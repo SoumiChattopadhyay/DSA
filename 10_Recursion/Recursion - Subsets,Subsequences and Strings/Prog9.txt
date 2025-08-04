@@ -1,0 +1,75 @@
+✅ 1. permutations(String up, String p)
+This method prints all permutations.
+
+📌 Time Complexity:
+Let n be the length of the string up.
+
+The total number of permutations of a string of length n is n! (factorial).
+At each recursive level, the number of recursive calls increases as:
+Level 1: 1 call
+Level 2: 2 calls
+Level 3: 3 calls
+...
+
+Total calls ≈ n!
+
+⏱ Time Complexity:
+O(n!)
+
+📌 Space Complexity:
+Recursive depth: n calls on the stack.
+String concatenation creates new strings, but Java handles strings in heap memory.
+🧠 Space Complexity:
+O(n) for the call stack.
+
+
+
+
+
+✅ 2. permutations2(String up, String p)
+This version returns a list of all permutations.
+
+📌 Time Complexity:
+Same recursion as above → O(n!)
+Each permutation is added to an ArrayList.
+
+⏱ Time Complexity:
+O(n! * n)
+
+n! permutations
+Each string is of length n → copying each string takes O(n)
+In Java, String is immutable, meaning every time you "modify" or concatenate strings (like f + ch + s), a new string object is created in memory.
+If the string has length n, creating a new string involves copying all n characters into a new array of characters.
+This copying takes O(n) time per string creation.
+So even though you're returning just one string, that string internally requires copying each character into a new memory location during concatenation.
+
+📌 Space Complexity:
+List stores n! strings, each of length n → O(n * n!)
+Call stack: O(n)
+🧠 Space Complexity:
+O(n * n!)
+
+
+
+
+
+
+✅ 3. permutationsCount(String up, String p)
+This version just counts permutations.
+
+📌 Time Complexity:
+Same recursive branching → n! calls
+
+⏱ Time Complexity:
+O(n!)
+
+📌 Space Complexity:
+No data structure used, just a counter and recursive calls.
+🧠 Space Complexity:
+O(n) (due to call stack)
+
+📊 Summary Table:
+Method	Time Complexity	Space Complexity
+permutations()	O(n!)	O(n) (call stack)
+permutations2()	O(n! * n)	O(n * n!)
+permutationsCount()	O(n!)	O(n) (call stack)

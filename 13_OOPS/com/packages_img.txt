@@ -1,0 +1,3 @@
+We go to root directory(folder just one level above 'com' folder)
+there we run 'javac com/a/Greeting.java' to compile the Greeting.java file in a folder which is in com folder
+then we run java com.a.Greeting to run the file

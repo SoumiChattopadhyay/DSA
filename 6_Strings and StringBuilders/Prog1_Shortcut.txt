@@ -1,0 +1,17 @@
+For System.out.printf, there is no default shortcut.
+But You can create a custom snippet for System.out.printf:
+
+Steps:
+    1. Open Command Palette (Ctrl + Shift + P).
+    2. Search for "Configure User Snippets" and select "Java".
+    3. Add the following snippet inside the JSON file:
+        "System.out.printf shortcut": {
+            "prefix": "sop",
+            "body": "System.out.printf(\"$1\\n\", $2);",
+            "description": "Shortcut for System.out.printf"
+        }
+    4. Save the file.
+
+Usage:
+Now, type sop and press Tab, and it will expand to:
+System.out.printf("\n",); 

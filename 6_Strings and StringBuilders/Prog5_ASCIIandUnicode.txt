@@ -1,0 +1,11 @@
+
+Types of ASCII(American Standard Code for Information Interchange) Characters
+1. Control Characters (0-31): Newline (\n), Tab (\t), Backspace (\b), etc.
+2. Printable Characters (32-126): Letters, digits, punctuation (A-Z, a-z, 0-9, @, #, etc.).
+3. Extended ASCII (128-255): Special symbols, accented letters (not part of standard ASCII).
+
+ASCII is a subset of Unicode, but Unicode includes many more characters beyond ASCII
+
+Unicode is a universal character encoding system that assigns a unique numeric value (code point) to every character in all languages, symbols, and emojis.
+ASCII is limited to English characters (0-127).
+Unicode supports characters from all languages (Hindi, Arabic, Chinese, etc.), mathematical symbols, and emojis.

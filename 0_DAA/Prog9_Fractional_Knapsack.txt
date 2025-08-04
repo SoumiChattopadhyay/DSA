@@ -1,0 +1,33 @@
+#include<stdio.h>
+int n=4;
+int W=50;
+int p[4]={65,52,45,34};
+int w[4]={25,20,16,10};
+void main(){
+    int maxi;
+    int totalVal=0;
+    int currWt=W;
+    int used[4];
+    for(int i=0;i<4;i++){
+        used[i]=0;
+    }
+    while(currWt>0){
+        maxi=-1;
+        for(int i=0;i<4;i++){
+            if(used[i]==0 && (maxi==-1 || (float)p[i]/w[i] > (float)p[maxi]/w[maxi])){
+                maxi=i;
+            }
+        }
+        used[maxi]=1;
+        currWt-=w[maxi];
+        totalVal+=p[maxi];
+        if(currWt>=0){
+            printf("Added item %d(%d,%d) completely in the bag. Space remaining is %d.\n",maxi+1,p[maxi],w[maxi],currWt);
+        }else{
+            printf("Added %d% of item %d(%d,%d) in the bag.",(int)(1+(float)currWt/w[maxi]*100),maxi+1,p[maxi],w[maxi]);
+            totalVal-=p[maxi];
+            totalVal+=(1+(float)currWt/w[maxi])*p[maxi];
+        }
+    }
+    printf("Filled the bag with objects worth %d.",totalVal);
+}

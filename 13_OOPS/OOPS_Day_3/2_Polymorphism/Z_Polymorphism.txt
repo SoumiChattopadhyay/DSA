@@ -1,0 +1,55 @@
+Polymorphism : "poly" means "many" and "morphism" means "ways to represent" so polymorphism means many ways to represent a single entity. Act of representing the same thing in multiple ways.
+It is the 2nd property of OOPS.
+Any lang. that doesn't support Polymorphism is not Object-Oriented lang,it is known as Object Basis lang.Ex:
+Earlier in the Inheritance part the constructors of Box class had different definitions i.e. different arguments, so in the main file whenever we created an object then the compiler knew which constructor needed to be called based on the parameters. So that was an example of Polymorphism.
+Here we are creating a Shapes class and some other classes which inherit the Shapes class like Circle class,Square class,Triangle class. The 4 classes have a function area() with different function bodies, but when object calls area() by dot operator, compiler knows which area() function needs to be executed based on the ref var type of that object 
+
+Types of Polymorphism:
+1. Compile-time/Static Polymorphism: This is achieved via method overloading. (Also via operator overloading but Java doesnt support operator overloading)
+Method overloading is when the class has multiple methods with the same name but different return types,no.of arguments,types of arguments and ordering of different types of arguments. Different order wont work for this --> void funct(int a,int b) and void funct(int b,int a)❌, but for this --> void funct(int a,String b) and void funct(String b,int a)✅
+Ex: multiple constructors
+A a1 = new A();
+A a2 = new A(3,4);
+Java determines which constructor or method will be called in compile-time.Hence the name. Ex: as in the inheritance Box codes and Polymorphism Shapes codes
+
+Ex: public class Numbers {
+    double sum(double a, int b) {
+        return a + b;
+    }
+    int sum(int a, int b, int c) {
+        return a + b + c;
+    }
+    public static void main(String[] args) {
+        Numbers obj = new Numbers();
+        obj.sum(2, 3);//Java automatically castes int into double and passes the double value to method 1, but if it was vice-versa then Java couldn't have converted double into int
+        obj.sum(1, 3, 7);
+     //obj.sum(4, 5, 6, 8);//error❌ As during compile-time Java identifies the there is no such method accepting 4 arguments 
+    }
+}
+
+2. Run-time/Dynamic Polymorphism : Achieved by Method Overriding.
+Method Overriding: When the parent class and the child class have the same method definition(return type,name,no. and type of args) 
+then if object of child class is created it gets the method of child class which has overridden the method of parent class.
+
+When an object is created, what methods and variables are accessiblle to it depends on its reference variable type(here parent class variables and methods)
+But when it calls the method, if another same method exists in the child class then that will be executed and so we say that the child class method overrides the parent class method
+So the object actually has access to the parent class method only but when that method is getting called by it then since a similar method is existing in the child class that is getting executed
+
+Now if we remove the area method from the parent class and keep the area method of child class and then try calling the area method we will see error because no such method exists in the parent class
+
+So the reference type specifies what can be accessed and the object type specifies which method to run.
+So how Java determines this? By Dynamic Method Dispatch: Mechanism by which call to an overridden method is resolved at runtime rather than compile time. So, when the program is running Java will determine which method to execute. Dynamic method dispatch is also known as late binding as it is happening after compilation and everything at the run-time.
+However, since the final method cannot be overridden so a call to such method can be resolved at compile time only this is called early binding.
+
+final keyword can be used to prevent overriding of methods.
+final keyword can also be used to prevent inheritance of classes. If Square class is made final then it cannot inherit the Shapes class.
+whenever class is made final, implicitly it makes all it's methods final too.
+
+Can static methods be overridden?
+Ans: No. If we create a static method in Shapes class and another similar definition but diff body non-static method in Square class,we will see error in the Square class showing cannot override static parent class method, but if we make it static too then no error will be shown and 
+then suppose we create object like this - Shapes obj = new Square(); i.e. parent class type ref. var pointing to child class object, then try to access the method like this - obj.greetings();
+then the child class method wont override the parent class method as the parent class method is static.
+But actually there is no point in creating an object as we dont need objects to access static methods we need class names
+Static methods are object independent, they can be inherited but not overridden as they are accessed by class name. Overriding needs objects.
+
+Polymorphism(both overloading and overriding) doesnt apply to instance variables, it only applies to instance methods.

@@ -1,0 +1,3 @@
+Limitation of LL:
+can't access any node we want directly using an index like in arrays and arraylists.
+we have to travel to that node by travelling all it's previous nodes

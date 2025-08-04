@@ -1,0 +1,13 @@
+#include<stdio.h>
+void towerOfHanoi(int n,char source,char auxillary,char destination){
+    if(n==1){
+        printf("Move %d from %c to %c.\n",n,source,destination);
+        return;
+    }
+    towerOfHanoi(n-1,source,destination,auxillary);//move n-1 disks from source to auxillary
+    printf("Move %d from %c to %c.\n",n,source,destination);//move largest disk(nth disk) from source to destination
+    towerOfHanoi(n-1,auxillary,source,destination);//move n-1 disks from auxillary to destination
+}
+int main(){
+    towerOfHanoi(3,'A','B','C');//no. of disks,source,auxillary,destination
+}

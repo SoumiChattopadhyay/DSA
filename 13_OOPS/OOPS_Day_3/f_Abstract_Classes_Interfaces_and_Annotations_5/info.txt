@@ -1,0 +1,13 @@
+the error:
+Implicit super constructor Parent() is undefined for default constructor.
+Must define an explicit constructor
+
+🤔 Why?
+Parent has only a parameterized constructor (Parent(int age)).
+
+So Java cannot insert super(); (the default no-arg call) into Child(), because Parent() (no-arg) doesn’t exist.
+
+✅ Fix it by explicitly calling the parameterized constructor of Parent:
+
+Java can only insert super() automatically if either u create no constructor at all or create a no-arg constructor by yourself.
+Also u cannot create 2 constructors with same definition, like u cant create 2 no-arg constructors

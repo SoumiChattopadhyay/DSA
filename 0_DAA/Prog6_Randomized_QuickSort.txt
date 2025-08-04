@@ -1,0 +1,57 @@
+//Apply Randomized Quick Sort on the following inputs generated randomly -
+// Case 1 - 100 no.s b/w 100-500
+// Case 2 - 500 no.s b/w 10-1000
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#define N 100
+int partition(int ar[N],int low,int high){
+    int pivotIdx=low+rand()%(high-low+1);
+    int i=low-1;
+    // Selecting random pivot so Move pivot to the end
+    int t=ar[pivotIdx];
+    ar[pivotIdx]=ar[high];
+    ar[high]=t;
+    for(int j=low;j<high;j++){
+        if(ar[j]<=ar[high]){
+           i++;
+           int temp=ar[i];
+           ar[i]=ar[j];
+           ar[j]=temp; 
+        }
+    }
+    i++;
+    int temp=ar[i];
+    ar[i]=ar[high];
+    ar[high]=temp;
+    
+    return i;
+}
+void quickSort(int ar[N],int low,int high){
+    if(low<high){
+        int pivotIdx=partition(ar,low,high);
+        quickSort(ar,low,pivotIdx-1);
+        quickSort(ar,pivotIdx+1,high);
+    }
+}
+void printArray(int ar[N]){
+    for(int i=0;i<N;i++){
+        printf("%d ",ar[i]);
+    }
+}
+void main(){
+    srand(time(0));// Seeds rand() with current time
+    int ar[N];
+    for(int i=0;i<100;i++){
+        ar[i]=100+rand()%401;
+    }
+    printf("100 random no.s between 100 and 500 are:\n");
+    for(int i=0;i<100;i++){
+        printf("%d ",ar[i]);
+    }
+    printf("\n");
+    printf("\n");
+    quickSort(ar,0,N-1);
+    printf("On applying quick sort we get:\n");
+    printArray(ar);
+}

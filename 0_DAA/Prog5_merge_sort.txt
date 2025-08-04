@@ -1,0 +1,49 @@
+#include<stdio.h>
+#define N 5
+void merge(int ar[N],int low,int mid,int high){
+    int temp[high-low+1];
+    int i=low,j=mid+1,k=0;
+    while(i<=mid && j<=high){
+        if(ar[i]<ar[j]){
+            temp[k]=ar[i];
+            i++;
+        }else{
+            temp[k]=ar[j];
+            j++;
+        }
+        k++;
+    }
+    while(i<=mid){
+        temp[k]=ar[i];
+        i++;
+        k++;
+    }
+    while(j<=high){
+        temp[k]=ar[j];
+        j++;
+        k++;
+    }
+    for(k=0,i=low;k<high-low+1;k++,i++){
+        ar[i]=temp[k];
+    }
+}
+void mergeSort(int ar[N],int low,int high){
+    if(low<high){
+        int mid=low+(high-low)/2;
+        mergeSort(ar,low,mid);
+        mergeSort(ar,mid+1,high);
+        merge(ar,low,mid,high);
+    }
+}
+void printArray(int ar[N]){
+    for(int i=0;i<N;i++){
+        printf("%d ",ar[i]);
+    }
+}
+void main(){
+    int ar[N]={4,2,1,5,3};
+    mergeSort(ar,0,N-1);
+    printArray(ar);
+}
+
+

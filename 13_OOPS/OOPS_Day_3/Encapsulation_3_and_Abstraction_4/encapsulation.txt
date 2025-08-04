@@ -1,0 +1,23 @@
+Encapsulation means wrapping up the implementation of the data members and the member methods inside a class.
+It hides the code and all the data into a single entity or a unit so that that can be protected from the outside world.
+
+
+Abstraction means hiding all the unnecessary details but only showing the essential information.
+Ex: we declare an arraylist like this - ArrayList<Integer> list = new ArrayList<>();
+We don't care about the internal implementation of this ArrayList. That's why they are known as abstract data types. Abstract data types means we are able to access and modify this using some methods like get, add or remove or whatever but how these are working internally I don't care about it.
+
+Difference b/w the two:
+Abstraction solves a design level issue and Encapsulation solves an implementation level issue.
+Designers go to engineers(impementers) and ask for a data structure named arraylist and ways to access and modify it. So engineers implement this arraylist in form of class
+where all the code is hidden in a single entity(class) and then give these 3 methods(get,add,remove) to the designers. So designers dont need unnecessary details and get themselves confused so abstraction helps them they only get the 3 methods 
+and engineers who implement the arraylist need encapsulation so that they can bind all the data members and methods into a single entity called class.
+
+Abstraction focusses on external stuff and encapsulation on internal stuff.
+abstraction is achieved by abstract classes and interfaces that only define the structure of the program and not how it does it.
+Abstraction is a process of gaining information and Encapsulation is the process of containing the information
+
+Suppose linked list we can declare and use it
+But internally linked list is implemented as an array and we cannot directly access that array as it is private(Data hiding)
+but we can access it using the internal getters and setters and all these code are wrapped in a class(Encapsulation)
+
+Ex: starting car we need key and internal working of car we dont need to know 

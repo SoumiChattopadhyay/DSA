@@ -1,0 +1,36 @@
+    🔍 Time Complexity (TC)
+    If input string has n characters.
+    For each character, we make 3 recursive calls.
+
+    So total number of recursive calls = 3ⁿ
+
+    ✅ Therefore,
+    -------------
+    TC = O(3ⁿ)
+    -------------
+
+    💾 Space Complexity (SC)
+    We consider two things for SC:
+    1.Call stack size – max recursion depth.
+    2.Extra memory used – e.g., the list in the return version.
+
+    For subseqAscii(...) (print version):
+    It only prints values, doesn’t return.
+
+    Recursion depth is n, so:
+    ---------------------------
+    SC = O(n) (call stack only)
+    ---------------------------
+
+    For subseqAsciiRet(...) (return version):
+    At each level, we create 3 new lists, but they are merged.
+    Total number of subsequences generated = 3ⁿ
+    Each string may take up to O(n) space (less than or equal to O(n) or more than O(n))
+    So:
+    Output space = O(3ⁿ × n)
+    Call stack space = O(n)
+
+    ✅ Therefore,
+    ----------------------------------
+    SC = O(3ⁿ × n) for return version.(call stack + extra space for list)
+    ----------------------------------

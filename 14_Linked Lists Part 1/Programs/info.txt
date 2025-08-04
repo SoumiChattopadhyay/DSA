@@ -1,0 +1,7 @@
+The non-static instance variables are stored in the object.
+Each object has its own copy of those variables
+But the non-static method is stored in the class's blueprint 
+So whenever JVM sees obj1.greet() It follows the address stored in ref var. obj1 to the actual object in heap memory.
+It goes to the class definition.
+It finds the greet() method in the class
+While executing greet(), it uses obj1's data (non-static instance vars) from the object

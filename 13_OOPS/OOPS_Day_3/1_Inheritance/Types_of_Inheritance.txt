@@ -1,0 +1,26 @@
+1.Single-level inheritance: One class extends another class.
+Ex: Box--->BoxWeight
+
+2. Multi-level inheritance: One class extends another class And it is base class for another class
+Ex: Box--->BoxWeight--->BoxPrice
+
+3. Multiple Inheritance: One class extends(inherits) multiple classes
+Ex: A--->C<---B
+But if 2 or more parent classes have the same variable then subclass wud pick which one, so there is confusion
+That's why Java doesn’t allow multiple inheritance with classes to avoid ambiguity.
+So what does Java do if a class needs properties from two or more parent classes? Ans: It uses Interfaces
+
+4.Hierarchial Inheritance: Many classes extend(inherit) one class
+Ex: A--->B
+     --->C
+     --->D
+    BoxWeight---->BoxPrice 
+        --------->BoxColor
+5.Hybrid Inheritance: It is combination of simple and multiple inheritance. So it does not exist in Java. We can achieve this functionality using interfaces.
+Ex:       A
+        /   \   
+       B     C
+       \     /
+          D
+B and C inherit from A(Hierarchial Inheritance)
+D inherits from B and C(Multiple Inheritance)

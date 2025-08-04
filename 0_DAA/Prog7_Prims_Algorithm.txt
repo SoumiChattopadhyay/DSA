@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdbool.h>
+#define V 5
+#define E 8
+#define INF 99999
+int minKey(int key[V],int mst[V]){
+    int min_val=INT_MAX,min_idx;
+    for(int i=0;i<V;i++){
+        if(mst[V]==false && key[V]<min_val)
+            min_val=key[V];
+            min_idx=i;
+    }
+    return min_idx;
+}
+void primMST(int graph[V][V]){
+    int parent[V];
+    int key[V];
+    bool mst[V];
+    for(int i=0;i<V;i++){
+        key[i]=INT_MAX;
+        mst[i]=false;
+    }
+    key[0]=0;
+    parent[0]=-1;
+    for(int i=0;i<V-1;i++){
+        int u=minKey(key,mst);
+        mst[u]=true;
+        if(graph[u][v] && mst[v]==false && graph[u][v]<key[v]){
+            parent[i]=u;
+            key[v]=graph[u][v];
+        }
+    }
+    
+
+}
+void main(){
+    int graph[V][V]={
+        {0,2,3,4,0},
+        {2,0,1,0,1},
+        {3,1,0,2,2},
+        {4,0,2,0,3},
+        {0,1,2,3,0}
+    };//adjacency matrix showing the edge length b/w 2 vertices connected by an edge, if 2 vertices are not connected by an edge then it is shown as 0 so 0 means no edge
+    primMST(graph);
+}
