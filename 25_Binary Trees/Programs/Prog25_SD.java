@@ -10,6 +10,8 @@ public class Prog25_SD {
             this.data=data;
         }
     }
+    //TC=O(N)Even null children are added (2 for each leaf node), so total entries in the list = 2n + 1 (approx).
+    //SC=O(N)List stores roughly 2n+1 entries → O(N). Recursive stack space for preorder traversal → O(H) where H is the height of the tree. So, SC = O(N+H)= O(N) in worst case (skewed tree).
     //Converts tree to list of strings
     public List<String> serialize(Node root){
         List<String> list = new ArrayList<>();
@@ -28,6 +30,8 @@ public class Prog25_SD {
         helper(list, node.left);
         helper(list, node.right);
     }
+    // TC=O(N)  Each element is processed once. 
+    // SC=O(H) Recursive stack for tree reconstruction → O(H). The list is passed as reference (no copy) → not extra space. So, SC = O(H)=O(N) in worst case (skewed tree).
     //Converts list of strings to tree
     Node deserialize(List<String> list){
         Collections.reverse(list);
@@ -49,7 +53,14 @@ public class Prog25_SD {
     }
     public static void main(String[] args) {
         Prog25_SD obj = new Prog25_SD();
-        
+        Node root = new Node(1);
+        root.left=new Node(2);
+        root.right=new Node(3);
+        root.right.left=new Node(4);
+        root.right.right=new Node(5);
+        List<String> list = obj.serialize(root);
+        System.out.println(list);
+        obj.deserialize(list);
     }
 }
 // All objects in Java are passed by value — but the value is a reference to the object.
