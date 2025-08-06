@@ -1,5 +1,3 @@
-import javax.swing.tree.TreeNode;
-
 public class Prog21_Check_Valid_BST {
     static class Node{
         int data;

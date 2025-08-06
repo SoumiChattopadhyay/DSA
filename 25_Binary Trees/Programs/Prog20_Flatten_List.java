@@ -1,5 +1,3 @@
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 public class Prog20_Flatten_List {
