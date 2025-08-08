@@ -55,6 +55,29 @@ public class Prog31_Find_All_Paths {
         path.remove(path.size()-1);
         return count;
     }
+    // Given the root of a binary tree and an integer targetSum, return all root-to-leaf paths where the sum of the node values in the path equals targetSum.
+    // Time: O(N) (visit each node once; copying paths costs extra in worst case).
+    // Space: O(H + K*H)--> O(H)for recursion stack + O(K * H) for storing K valid paths of max length H.
+    public List<List<Integer>> findRootToLeafPaths(int targetSum,Node root){//store all possible paths whose pathSum=targetSum.
+       List<List<Integer>> paths = new ArrayList<>();
+       List<Integer> path = new ArrayList<>();
+       helper2(targetSum,root,path,paths);
+       return paths;
+    }
+    private void helper2(int targetSum,Node node,List<Integer> path,List<List<Integer>> paths){
+        if(node==null){//if root is null or u have reached the null left child of a node having right child only or vice versa
+            return;
+        }
+        path.add(node.data);
+        if(node.data==targetSum && node.left==null && node.right==null){//leaf node reached and sum=node.val
+            paths.add(new ArrayList<>(path));//create and store a copy of the list
+        }else{
+            helper2(targetSum-node.data, node.left, path, paths);
+            helper2(targetSum-node.data, node.right, path, paths);
+        }
+        //backtrack
+        path.remove(path.size()-1);
+    }
     public static void main(String[] args) {
         Prog31_Find_All_Paths obj = new Prog31_Find_All_Paths();
         Node root=new Node(1);
@@ -68,6 +91,7 @@ public class Prog31_Find_All_Paths {
         root.right.right.left.right.left=new Node(16);
 
         System.out.println(obj.findPaths(4,root));
+        System.out.println(obj.findRootToLeafPaths(4,root));
     }
 }
 /*Problem when u just do -
