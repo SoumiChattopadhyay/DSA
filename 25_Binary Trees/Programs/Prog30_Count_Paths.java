@@ -23,7 +23,7 @@ public class Prog30_Count_Paths {
         }
         path.add(node.data);
         int pathSum=0;
-        int count=0;
+        int count=0;//https://www.geeksforgeeks.org/java/listiterator-in-java/
         ListIterator<Integer> itr = path.listIterator(path.size());//mention where u will place the iterator. here its the last. so itr.previous()=last node
         while(itr.hasPrevious()){
             pathSum+=itr.previous();
