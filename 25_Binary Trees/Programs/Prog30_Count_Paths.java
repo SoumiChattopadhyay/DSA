@@ -11,8 +11,19 @@ public class Prog30_Count_Paths {
             this.data=data;
         }
     }
-    //TC=O(N)
     //SC=O(H)
+//1.Recursion stack → height of tree = O(H)
+//2.path list → at most H elements = O(H)
+// So, O(H)+O(H)=O(2H)=O(H)
+
+    //TC=O(N*H) 
+// u visit every node in the binary tree once in the recursion
+// In Inner while-loop with ListIterator - At each node, you may iterate backwards through the current path.
+// In the worst case (skewed tree), the path length can be O(H), where H = height of the tree (H = N in worst case).
+// So, at each node, you might do O(H) work.
+// So, Total work = O(N*H)
+// In a balanced tree → H = logN → O(NlogN)
+// In a skewed tree → H = N → O(N²)}
     public int countPaths(int targetSum,Node root){//count all possible paths whose pathSum=targetSum.
        List<Integer> path = new ArrayList<>();
        return helper(targetSum,root,path);

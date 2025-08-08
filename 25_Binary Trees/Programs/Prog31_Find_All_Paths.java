@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.function.Function;
 
 public class Prog31_Find_All_Paths {
      static class Node{
@@ -11,8 +12,21 @@ public class Prog31_Find_All_Paths {
             this.data=data;
         }
     }
-    //TC=O(N)
-    //SC=O(H)
+    //SC=O(H + K*H) What’s stored in memory? Ans: Function call stack from recursion (DFS), and a few variables.
+// Recursion stack → At most height of tree = O(H).
+// Path list → Also at most H elements stored = O(H).
+// Result list (paths) → This depends on how many valid paths exist.
+// Worst case: all paths are valid and each path can have up to H elements → O(K × H) where K = number of valid paths.
+// Space Complexity: O(H + K×H) ≈ O(H + total_output_size)
+
+//TC=O(N*H)
+// u visit every node in the binary tree once in the recursion
+// In Inner while-loop with ListIterator - At each node, you may iterate backwards through the current path.
+// In the worst case (skewed tree), the path length can be O(H), where H = height of the tree (H = N in worst case).
+// So, at each node, you might do O(H) work.
+// So, Total work = O(N*H)
+// In a balanced tree → H=logN → O(NlogN)
+// In a skewed tree → H=N → O(N²)
     public List<List<Integer>> findPaths(int targetSum,Node root){//store all possible paths whose pathSum=targetSum.
        List<List<Integer>> paths = new ArrayList<>();
        List<Integer> path = new ArrayList<>();
@@ -27,7 +41,7 @@ public class Prog31_Find_All_Paths {
         int pathSum=0;
         int count=0;
         //https://www.geeksforgeeks.org/java/listiterator-in-java/
-        ListIterator<Integer> itr = path.listIterator(path.size());//mention where u will place the iterator. here its the last. so itr.previous()=last node
+        ListIterator<Integer> itr = path.listIterator(path.size());//mention where u will place the iterator. here its after the last value. so itr.previous()=last node
         while(itr.hasPrevious()){
             pathSum+=itr.previous();
             if(pathSum==targetSum){
