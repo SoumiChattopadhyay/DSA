@@ -1,9 +1,11 @@
 public abstract class Parent{//abstract class
-    //instance variable
+    //instance variables
     int age;
+    final int phno;//final field must be initialized - either here itself or inside the constructor
     //constructor
     public Parent(int age){
         this.age=age;
+        this.phno=91;
     }
     // static method
      static void hello(){

@@ -56,8 +56,19 @@ public class Prog31_Find_All_Paths {
         return count;
     }
     // Given the root of a binary tree and an integer targetSum, return all root-to-leaf paths where the sum of the node values in the path equals targetSum.
-    // Time: O(N) (visit each node once; copying paths costs extra in worst case).
-    // Space: O(H + K*H)--> O(H)for recursion stack + O(K * H) for storing K valid paths of max length H.
+// Time Complexity (TC) = O(N+K*H) or simply O(N*H) {O(NlogN) for balanced tree, O(N^2) for unbalanced}. K can be maximum N here as only paths from root to leaf are considered
+// You are visiting every node in the tree once.
+// At each node, you:
+// 1.Add it to the path list → O(1)
+// 2.If it's a leaf and the sum matches → make a copy of the path list → copying takes O(H) time, where H is the height of the tree.
+// If there are K valid paths and each has length up to H, the cost of copying all paths is: O(K * H)
+// Final TC formula:O(N+K*H)or simply O(N*H) in worst case
+// N = number of nodes in the tree
+// H = height of the tree
+// K = number of root-to-leaf paths found
+
+// Space Complexity (SC): O(H + K*H)--> O(H) for recursion stack + O(K*H) for storing K valid paths of max length H.
+//or simply O(N*H) {O(NlogN) for balanced tree, O(N^2) for unbalanced}. K can be maximum N here as only paths from root to leaf are considered
     public List<List<Integer>> findRootToLeafPaths(int targetSum,Node root){//store all possible paths whose pathSum=targetSum.
        List<List<Integer>> paths = new ArrayList<>();
        List<Integer> path = new ArrayList<>();

@@ -3,6 +3,7 @@
 🌺abstract is a Java modifier applicable for classes and methods in Java but not for Variables
 🌺What is Abstract Class in Java?
     Java abstract class is a class that can not be instantiated by itself, it needs to be subclassed by another class to use its properties. An abstract class is declared using the "abstract" keyword in its class definition.
+🌺What is Abstract Function in Java? Function with no body allowed, only definition. Any class with this is an abstract class. It is overridden by subclass of that abstract class.
 🌺We cant create objects of abstract class,we can have references to abstract class type though. becuase if we do obj.fun() then we will get error as fun() is an abstract method with no function body.
 But then doubt: Why can we have constructors in Abstract classes when we cant create its objects? 
     The subclass’s constructor will call the abstract class’s constructor (explicitly or implicitly via super()).
@@ -112,3 +113,11 @@ public class Main {
 
 🌺 We can call the normal non-static methods of Parent class using the objects of its subclass.
 And static mathods can be called by class name of Parent class only.
+
+🌺 Constructor of Parent class can only be called inside subclass constructor using super keyword which only happens during object creation. super(); or super(args); 
+If you don’t write super(...), Java automatically adds super() (no-arg) for you — but only if Parent has a no-arg constructor.
+
+🌺 Abstract classes and abstract methods can't be final.
+🌺 There is no such thing as abstract variables
+🌺 Abstract classes must be inherited to use them and the subvlass must provide implementations for all abstract methods.
+🌺 But still abstract classes also dont allow multiple inheritance, for that we need interface.

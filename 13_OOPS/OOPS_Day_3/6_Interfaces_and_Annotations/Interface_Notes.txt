@@ -1,0 +1,54 @@
+// Interface is like a class(not completely) with abstract methods
+//The functions are public and abstract in interfaces(A default body can be there)
+//You cannot create objects of interface
+//Variables are final and static by default in interfaces(static stuff independent of objects)
+//Why are the variables final? Coz If you just create a variable in interface and u know interface cant have a constructor to initialize them also, so they must be final as final vars always compulsorily need to be initialized.
+//Interfaces specify what the class is doing and not how its doing it. 'How its doing' is specified by the class by overriding the abstract methods of the inheritance. 
+//Interfaces are similar to abstract classes with abstract methods but there you cannot do multiple inheritance but here you can
+//Class will maintain some state information through some instance variables but interface can't. It has only static variables.
+//Difference between Abstract class and Interface :
+//1. Abstract class can have abstract methods,non-abstract methods(default and static methods)
+//interface earlier had only have abstract methods, but from Java 8 it can have abstract methods,non-abstract methods(default and static methods)
+//2.Variables declared in interface must be final but in abstract class can be final or non-final both.
+//3.Abstract class can provide the implementation of interface but interface cannot provide the implementation of abstract class
+//4.A Java Interface can be implemented using the 'implements' keyword and for Abstract Class we use 'extends'
+//5.A class can implement multiple interfaces together but a class can extend(or inherit) only one abstract class at a time
+//6.An interface can extend multiple other interfaces but An abstract class can only extend single abstract class or non-abstract class
+//So interface shows multiple inheritance but abstract class doesn't
+//7.Members of the interface are of public accessibility but abstract classes can have all kind of members (public private protected default)
+In interface -
+// private int hello=0;//Compile Error. private not allowed
+// int hello=0;//No error by default considers it public
+
+// When we use classes, the parent class has no idea about what child class is but child class has idea about what parent class is 
+// so then suppose you are calling one function from a child class and that function lets say exists in the parent class 
+// then the parent class and child class both have to be present at the compile time so that the Java compiler can check that everything is compatible or not
+// So this way for more functions to be available to child classes functions get pushed up higher and higher in the parent class 
+// and this is a problem that interfaces solve. They disconnect the definition of a method from this hierarchy of inheritance. the method body is implemented in the child class only.
+//Interfaces are not in the hierarchy of classes.
+//So it's totally possible for two classes that are unrelated to each other in terms of their parents or whatever to implement the same interface.
+//You can go up but you cant go down in that way, so it makes sense to put functions that are being used by multiple classes up and up and up. Interface does not really care about whether the two classes are related or not but in normal inheritance it does care if two classes are inherited like you can have two child classes you can't really go down you can only go up, interfaces does not really care that. 2 classes that are basically unrelated to each other right they can also implement the same interface 
+
+🤍🌺Annotation(Ex: @Override):
+    It is internally an interface.
+
+🤍🌺Default method:
+    It is possible to give default implementation to interfaces.
+    The primary motivation was to expand the interfaces without breaking the existing code.
+    Suppose u add a method in interface then it needs to implemented by all of the classes implementing the interface.
+    The class's method implementation has more priority than the default implementation(interface default method)
+    Duplicate default methods from 2 or more interfaces cannot be inherited by a class or another interface 
+
+🤍🌺Static method:
+    Static methods never get inherited.
+    Inheritance means possibility of overriding
+    overriding means it depends on objects coz its runtime polymorphism
+    which method runs depends on the actual object
+    But wait static methods are never accessed through objects they are totally not dependent on objects
+    So they cannot be overridden
+🤍🌺So if there are any static methods in interfaces they must contain their function body also. 
+They would be used from the interface only i.e. they can be accessed through the interface name
+And they won't be inherited by any other interface or class
+
+The access modifiers for the overridden methods should be same or better
+Like if the method getting overridden(the parent class's method) is protected then the method overriding it must be public or protected. It cannot be more restrictive than protected, it cannot be private or default.

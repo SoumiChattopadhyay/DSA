@@ -20,11 +20,9 @@ public class Prog8_stackWithTwoQueues {
                     q1.add(q2.remove());
                 }
             }
-            
-           
         }
         public int pop(){//TC=O(1)
-           
+           return q1.remove();
             
         }
         public int peek(){//TC=O(1)
