@@ -1,0 +1,114 @@
+🌺https://www.geeksforgeeks.org/java/abstract-classes-in-java/
+
+🌺abstract is a Java modifier applicable for classes and methods in Java but not for Variables
+🌺What is Abstract Class in Java?
+    Java abstract class is a class that can not be instantiated by itself, it needs to be subclassed by another class to use its properties. An abstract class is declared using the "abstract" keyword in its class definition.
+🌺We cant create objects of abstract class,we can have references to abstract class type though. becuase if we do obj.fun() then we will get error as fun() is an abstract method with no function body.
+But then doubt: Why can we have constructors in Abstract classes when we cant create its objects? 
+    The subclass’s constructor will call the abstract class’s constructor (explicitly or implicitly via super()).
+    This ensures that any common fields or resources declared in the abstract class get properly initialized.
+    Abstract classes can have non-abstract methods and fields that need initialization.The constructor lets you set these up when a subclass is created.
+    Even though you don’t directly instantiate the abstract class, when you instantiate its subclass, the JVM constructs the abstract part first (using its constructor), then moves to the subclass.
+🌺Elements abstract class can have - data member, abstract method, method body (non-abstract method or normal method - static and non-static both), constructor, main() method. 
+🌺We can have an abstract class without any abstract method.This allows us to create classes that cannot be instantiated but can only be inherited.
+🌺But if abstract method present then class must be abstract.
+🌺Constructor cannot be abstract or static.
+🌺There can be a final method in abstract class but any abstract method in class(abstract class) can not be declared as final  or in simpler terms final method can not be abstract itself as it will yield an error: "Illegal combination of modifiers: abstract and final"
+Because abstract methods are overridden by the subclass so if its final then they cant be overridden
+🌺We can use the abstract keyword for declaring top-level classes (Outer class) as well as inner classes as abstract
+🌺If the Child class is unable to provide implementation to all abstract methods of the Parent class then we should declare that Child class as abstract so that the next level Child class should provide implementation to the remaining abstract method
+🌺We can have references to abstract class type though
+    In OOP, a Child is-a Parent (inheritance).
+    That means a Child object can be treated as a Parent object because it has all the properties and methods of Parent (plus maybe more).
+the limitation of Parent p = new Child() 🙂
+    The object in memory is still a full Child with all its unique properties and methods.
+    But the reference (the “label”) only knows about the things defined in Parent.
+    So, you can’t directly access the unique properties from that reference.
+
+int and double are primitive types, not classes.
+An int variable cannot hold a double value without conversion, because they are different storage formats in memory.
+However, Java will allow automatic widening:
+double d = 5;     // ✅ int → double (widening)
+int i = 5.5;      // ❌ needs explicit cast (narrowing)
+
+🌺 If a class contains at least one abstract method then compulsory that we should declare the class as abstract 
+otherwise we will get a compile-time error because if a class contains at least one abstract method then, implementation is not complete for that class, 
+and hence it is not recommended to create an object so in order to restrict object creation for such partial classes we use abstract keyword.
+
+🌺We can use the abstract keyword for declaring top-level classes (Outer class) as well as inner classes as abstract
+import java.io.*;
+abstract class B {
+    // declaring inner class as abstract with abstract
+    // method
+    abstract class C {
+        abstract void myAbstractMethod();
+    }
+}
+class D extends B {
+    class E extends C {
+        // implementing the abstract method
+        void myAbstractMethod()
+        {
+            System.out.println(
+                "Inside abstract method implementation");
+        }
+    }
+}
+public class Main {
+
+    public static void main(String args[])
+    {
+        // Instantiating the outer class
+        D outer = new D();
+
+        // Instantiating the inner class
+        D.E inner = outer.new E();
+        inner.myAbstractMethod();
+    }
+}
+
+🌺If the Child class is unable to provide implementation to all abstract methods of the Parent class then we should declare that Child class as abstract so that the next level Child class should provide implementation to the remaining abstract method. 
+    import java.io.*;
+
+    abstract class Demo {
+        abstract void m1();
+        abstract void m2();
+        abstract void m3();
+    }
+
+    abstract class FirstChild extends Demo {
+        public void m1() {
+        System.out.println("Inside m1"); 
+        }
+    }
+
+    class SecondChild extends FirstChild {
+        public void m2() {
+        System.out.println("Inside m2"); 
+        }
+        public void m3() {
+        System.out.println("Inside m3");
+        }
+    }
+
+    class GFG {
+        public static void main(String[] args)
+        {
+            // if we remove the abstract keyword from FirstChild
+            // Class and uncommented below obj creation for
+            // FirstChild then it will throw
+            // compile time error as did't override all the
+            // abstract methods
+
+            // FirstChild f=new FirstChild();
+            // f.m1();
+
+            SecondChild s = new SecondChild();
+            s.m1();
+            s.m2();
+            s.m3();
+        }
+    }
+
+🌺 We can call the normal non-static methods of Parent class using the objects of its subclass.
+And static mathods can be called by class name of Parent class only.

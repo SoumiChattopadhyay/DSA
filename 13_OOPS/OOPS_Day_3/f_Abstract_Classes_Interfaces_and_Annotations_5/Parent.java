@@ -18,7 +18,7 @@ public abstract class Parent{//abstract class
     abstract void bff();
 
     // cannot create objects of abstract class
-    // Parent p1 = new Parent(48);//error
+    // Parent p1 = new Parent(48);//compiler error
     //cannot create abstract constructors.
     // can create constructors in abstract class.
     // cannot create abstract static methods.

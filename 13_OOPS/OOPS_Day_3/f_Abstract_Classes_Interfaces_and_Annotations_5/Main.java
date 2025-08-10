@@ -20,12 +20,20 @@ public class Main {
         p1.bff();
         p1.normal();
         System.out.println(p1.age);
-        // System.out.println(p1.gpa);//wrong 
-        // p1.gpaPrint();//wrong
+        // System.out.println(p1.gpa);//wrong. Compile-time error
+        // p1.gpaPrint();//wrong. Compile-time error
                 
         // Java's Run-time polymorphism 
         // which variables and methods can be accessed depends on the type of the reference variable
         // and which method would run depends on the type of the actual object and is decided during run-time 
 
+        //Parent → Child doesn’t work automatically because a Parent might not have the extra things a Child needs.
+        //Child c = p; // ❌Compile error — Parent is not necessarily a Child
+        // Only possible with an explicit cast
+        // And even then, it will only work at runtime if the object actually is a Child.
+        // Parent p = new Child(); // object is really a Child
+        // Child c = (Child) p;    // ✅ Works
+        // Parent p = new Parent();
+        // Child c = (Child)p; //❌ Runtime error: ClassCastException
     }
 }
