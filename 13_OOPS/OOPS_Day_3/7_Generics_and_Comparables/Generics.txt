@@ -1,0 +1,277 @@
+Advantages of Generics
+🤍1.Reusability : It would be convenient if like the internal ArrayList class, our CustomArrayList class could also provide a template where we mention the data type and reuse the same code again and again for different data types. It eliminates the hectic procedure of writing code separately for different data types.
+🤍2.Type safety:
+    ArrayList list = new ArrayList();
+    If there were no generics then in this list one could add float another could add string and the need for storing only a single specific type of objects throughout the list wouldn't be fulfilled. Type safety would be missing.
+
+🤍Generics means parameterized types.
+They allow us to write code that works with different data types using a single class, interface or method. 
+Instead of creating separate versions for each type, we use type parameters (like <T>) to make the code reusable and type-safe.
+
+🤍Generic Class: A generic class is like a regular class but uses type parameters (like <T>). It can accept one or more types, making the class reusable for different data types. Such classes are called parameterized classes.
+A generic class is a class that can operate on objects of different types using a type parameter. Like C++, we use <> to specify parameter types in generic class creation. To create objects of a generic class, we use the following syntax:
+
+🤍// To create an instance of generic class 
+BaseType <Type> obj = new BaseType <Type>();
+
+🤍Note: In Parameter type, we can not use primitives like "int", "char" or "double". Use wrapper classes like Integer, Character, etc.
+
+🤍Runtime overhead in computing refers to the additional computational resources (time, memory, bandwidth, etc.) 
+consumed by a system or program beyond the resources strictly necessary to perform its core function. This overhead occurs during the execution or "runtime" of the program.
+In DSA, it is the resources (primarily time and memory) consumed by an algorithm or data structure that are not directly involved in performing the core task, but are necessary for its operation. It represents the "extra" work or resources.
+
+🤍Generics prevents runtime overhead by:
+1.Compile-Time Type Safety : 
+Generics let you specify types, allowing the compiler to catch type mismatches early(during compile-time) and avoid runtime errors like ClassCastException.
+        
+2.No Explicit Casting : 
+Removes the need for runtime type checks when casting from Object, reducing performance overhead.
+
+3.Type Erasure (Java) : 
+Generic type info exists only at compile time and is erased in bytecode, so no extra classes or runtime memory overhead are introduced.
+
+Example for points 1. and 2.
+Without Generics:
+        import java.util.ArrayList;
+        public class A {
+            psvm() {
+                ArrayList list = new ArrayList(); // raw type
+                list.add("Hello");
+                
+                //Here, list.get(0) returns an Object, so we must cast to String.
+                String str = (String) list.get(0); // Explicit casting needed
+                System.out.println(str);
+
+                //If you accidentally store a wrong type:
+                list.add(123); // compiles fine
+                String str = (String) list.get(1); // Runtime ClassCastException!
+            }
+        }
+    
+With Generics:
+        import java.util.ArrayList;
+        public class B {
+            psvm() {
+                ArrayList<String> list = new ArrayList<>(); // generic type String
+                list.add("Hello");
+                
+                // No need to cast
+                String str = list.get(0); 
+                System.out.println(str);
+                
+                //If you accidentally store a wrong type:
+                // list.add(123); // Compile-time error
+            }
+        }
+So this example shows how Generics provide Compile-Time Type safety and eliminate explixit casting.
+
+
+Example for point 3:
+Generics in Java are compile-time only. 
+After compilation, the type info is erased — replaced by Object (or the upper bound).
+
+        public class C<T> {
+            T value;
+            void set(T value) { this.value = value; }
+            T get() { return value; }
+        }
+
+
+        After compilation (conceptually):
+        public class C {
+            Object value;
+            void set(Object value) { this.value = value; }
+            Object get() { return value; }
+        }
+
+The <T> is gone in bytecode.
+The compiler inserts casts where necessary, so no extra class is created for C<String> or C<Integer>.
+That’s why C<String> and C<Integer> share the same runtime class:
+C<String> obj1 = new C<>();
+C<Integer> obj2 = new C<>();
+System.out.println(obj1.getClass() == obj2.getClass()); // true
+Both refer to the same class C at runtime — no separate C<Integer> or C<String> classes exist.
+This is why generics in Java don’t add memory or performance cost at runtime.
+
+🤍Object is the uppermost bound. All classes inherit Object class
+        class Box<T> { ... }
+        //If you don’t specify an upper bound → T’s default upper bound is Object.
+        //This means T can be any class or type.
+
+🤍But you can mention upper bound:
+        class Box<T extends Number> {  // Upper bound: Number
+            T value;
+            void set(T value) { this.value = value; }
+            T get() { return value; }
+        }
+    Now T can only be Number or subclasses of Number (Integer, Double, Float, etc.).
+    
+🤍So:
+If you want no restriction → T (upper bound is Object by default).
+If you want restricted types → T extends SomeClass or T extends SomeInterface.
+
+🌺🤍The type checking happens at compile-time
+The actual object creation happens during run-time
+    🤍Before compilation code(which we wrote)
+    public class CustomGenArrayList<T> {
+        T item;
+        public void set(T item) { this.item = item; }
+        public T get() { return item; }
+        
+        //This code will give Compile Error
+        //public CustomArrayList(){
+        //this.item = new T();
+        //}
+
+        psvm(){
+            CustomGenArrayList<String> list = new CustomGenArrayList<>();
+            list.set("Hello");
+            String s = list.get();
+        }
+    }
+    
+    //Compiler while compiling understands that T is String here, so it ensures:
+    //You don’t accidentally pass an Integer to set().
+    //You don’t need a cast when calling get().
+    🤍Compiler then removes the type parameter T and replaces it with its upper bound:
+    If you wrote just <T>, the bound is Object.
+    If you wrote <T extends Number>, the bound is Number.
+    So in bytecode, our example is like:
+    public class CustomGenArrayList {
+        Object item;
+        public void set(Object item) { this.item = item; }
+        public Object get() { return item; }
+
+        //This code will give Compile Error
+        //public CustomArrayList(){
+        //this.item = new T();
+        //}
+
+        psvm(){
+            CustomGenArrayList<String> list = new CustomGenArrayList<>();
+            list.set("Hello");
+            String s = list.get();
+        }
+    }
+    🤍Even though T becomes Object in the bytecode, the compiler still can't convert new T(); to new Object();
+    i.e. it cant generate the instance creation code for type Object or other Upper bound
+    because:
+    1.At compile time, T could be an interface or abstract class.
+    2.At runtime, the JVM has no record of T’s exact type, so it doesn’t know which constructor or type to instantiate.
+    3.Instantiating Object directly would break type correctness for cases where T is not actually Object.
+In our example the compiler knows T is String but since the user didn't specify an upper bound so the upper bound is Object and the compiler converts every T to Object
+But if the compiler could actually convert new T(); to new Object(); (which it can't it would give error) 
+then, At runtime, you’d get a ClassCastException when the JVM tried to assign the Object to String s (Object is not a String) in this line in the main method : String s = list.get();
+Generics promise that if T is String, you get a String back without unsafe casting.
+If the compiler secretly replaced it with Object, it would break that guarantee.
+🌺🤍So you can never create an instance of Generic type. (Compile-time error)
+But you can do something like this:
+public class CustomGenArrayList<T> {
+        T item;
+        public void set(T item) { this.item = item; }
+        public T get() { return item; }
+        
+        //Constuctor
+        //public CustomArrayList(Class<T> cls){
+        //this.item = cls.newInstance();
+        //}
+
+        psvm(){
+            CustomGenArrayList<String> list = new CustomGenArrayList<>(String.class);
+            list.set("Hello");
+            String s = list.get();
+        }
+    }
+        
+🤍Wildcard: In generic code, the question mark (?), called the wildcard, represents an unknown type
+
+🤍First, the Problem Without Wildcards
+You might think this should work:
+    void printNumbers(List<Number> list) {
+        for (Number n : list) {
+            System.out.println(n);
+        }
+    }
+    List<Integer> ints = new ArrayList<>();
+    ints.add(1);
+    ints.add(2);
+
+    printNumbers(ints); // ❌ Compile-time error
+
+But Java says no, because:
+List<Integer> is NOT considered a subtype of List<Number>.
+This is called invariance — generics don’t allow direct subtype substitution.
+
+🤍1. ? (Unbounded Wildcard)
+    "I don’t know what type this list holds."
+    void show(List<?> list) {
+        Object obj = list.get(0); // ✅ Can read as Object
+        list.add("Hi");           // ❌ Compile error
+        list.add(null);           // ✅ Allowed
+    }
+    Read → Only as Object.
+    Write → Only null allowed.
+    Why? The compiler doesn’t know if the list is List<String>, List<Integer>, etc., so it forbids adding anything except null.
+
+🤍2. ? extends T (Upper-Bounded Wildcard)
+    "This list contains some unknown subtype of T."
+    void showNumbers(List<? extends Number> list) {
+        Number num = list.get(0); // ✅ Safe to read as Number
+        list.add(10);             // ❌ Compile error
+    }
+    Read → Safe to read as Number because we know the type is Number or its child (like Integer, Double).
+    Write → Not allowed, because the list might actually be List<Double> and adding Integer would break it.
+
+🤍3. ? super T (Lower-Bounded Wildcard)
+    "This list contains some unknown supertype of T."
+    void addIntegers(List<? super Integer> list) {
+        list.add(10);              // ✅ Safe to add Integer
+        Object obj = list.get(0);  // ✅ Only safe to read as Object
+    }
+    Write → Safe to add Integer, because every supertype of Integer can store an Integer.
+    Read → Only as Object, because the actual type could be Number, Object, etc.
+
+🤍// String str = String.valueOf(30);
+  // System.out.println(str);
+    // int a = Integer.parseInt("hellp");
+    // System.out.println(a);//NumberFormatException
+String str2 = (String)300;//Cannot cast from int to String
+
+Restrictions on Generics:https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html
+🌺Cannot Instantiate Generic Types with Primitive Types
+🌺Cannot Create Instances of Type Parameters
+🌺Cannot declare static fields whose Types are Type Parameters
+        public class MobileDevice<T> {
+            private static T os;
+            // ...
+        }
+        If static fields of type parameters were allowed, then the following code would be confused:
+        MobileDevice<Smartphone> phone = new MobileDevice<>();
+        MobileDevice<Pager> pager = new MobileDevice<>();
+        MobileDevice<TabletPC> pc = new MobileDevice<>();
+        Then what is the type of os?? Confusion
+        static variables doesn’t depend on objects and is shared by all the objects so then for different types of objects as this is a generics class
+        what would the type of the static variable be? So not allowed.
+
+
+🌺Cannot create arrays of parameterized types. For example, the following code does not compile:
+    List<Integer>[] arrayOfLists = new List<Integer>[2];  // compile-time error
+    The following code illustrates what happens when different types are inserted into an array:
+
+    Object[] strings = new String[2];
+    strings[0] = "hi";   // OK
+    strings[1] = 100;    // An ArrayStoreException is thrown.
+    If you try the same thing with a generic list, there would be a problem:
+
+    Object[] stringLists = new List<String>[2];  // compiler error, but pretend it's allowed
+    stringLists[0] = new ArrayList<String>();   // OK
+    stringLists[1] = new ArrayList<Integer>();  // An ArrayStoreException should be thrown, but the runtime can't detect it.
+    If arrays of parameterized lists were allowed, the previous code would fail to throw the desired ArrayStoreException.
+
+🌺Cannot Overload a Method Where the Formal Parameter Types of Each Overload Erase to the Same Raw Type
+    A class cannot have two overloaded methods that will have the same signature after type erasure.
+    public class Example {
+        public void print(Set<String> strSet) { }
+        public void print(Set<Integer> intSet) { }
+    }
+    The overloads would all share the same classfile representation and will generate a compile-time error.
