@@ -1,0 +1,42 @@
+private void resize(){
+        ArrayList<LinkedList<Entity>> temp = new ArrayList<>(entities.size()*2);
+        temp.addAll(entities);
+        entities=temp;
+    }
+    //put() returns the old value associated with the key (if there was one).
+    public String put(String key, String value){
+        Entity en = new Entity(key, value);
+        LinkedList<Entity> subEntities = new LinkedList<>();
+        subEntities.add(en);
+        if(entities.size()==0){
+            entities.add(subEntities);
+            size++;
+            return null;
+        }
+        int hash=Math.abs(key.hashCode()%entities.size());
+        for(int i=0;i<hash;i++){
+            entities.add(null);
+        }
+        entities.add(subEntities);
+        if((float)size/entities.size()>lf){
+            resize();
+        }
+        if(entities.get(hash)==null){//in entities arraylist if idx hash has no linkedlist then we create one and add entity object in that linkedlist then add the linkedlist in the arraylist at idx=hash
+            LinkedList<Entity> subEntities = new LinkedList<>();
+            subEntities.add(en);
+            entities.set(hash,subEntities);
+        }
+        else{//if at idx=hash arraylist already has a linkedlist then get the linkedlist and traverse the linkedist to see if key matches any of the keys of the entity objects then update that particular key's value(Then its an update operation not insert) otherwise if key doesnt matches then add the entity object in the list(insertion)
+            LinkedList<Entity> subEntities = entities.get(hash);
+            for(Entity entity:subEntities){
+                if(entity.key.equals(key)){//In Java, == checks if two references point to the same object in memory, not if their contents are equal. For Strings, you should use: .equals()
+                    String oldVal=entity.value;
+                    entity.value=value;
+                    return oldVal;
+                }
+            }
+            subEntities.add(en);
+        }
+        size++;
+        return null;
+    }
