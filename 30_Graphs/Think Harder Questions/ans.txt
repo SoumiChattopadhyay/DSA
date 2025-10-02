@@ -1,0 +1,4 @@
+Even though adjacency list is a list of lists its SC is not O(N^2).Why?
+coz each list is nothing but the list of all neighbours of a node
+and total no. of neighbours of all nodes or total degree of all nodes together is 2*E(No. of edges)
+So the list actually stores 2*E els. in total so the SC should be O(2*E) or O(E) and not O(V^2)

@@ -26,9 +26,9 @@ public class Prog1_graph_storing_methods{
             System.out.println();
         }
     }
-    public void method2(){
+    public ArrayList<ArrayList<Integer>> method2(){
 
-        //2. Using Adjacency List: TC=O(N^2), SC=O(2M).
+        //2. Using Adjacency List: TC=O(N+M), SC=O(N+M).
 
         int[][] edges = {{1,2},{1,3},{2,4},{3,4},{2,5},{4,5}};// Edge list
         // int m = edges.length;//no. of edges
@@ -47,6 +47,7 @@ public class Prog1_graph_storing_methods{
             adj.get(v).add(u);//since undirected graph
         }
 
+        // Print adjacency list(TC=O(N^2))
         for(int i=1;i<=n;i++){
             System.out.print(i + " -> ");
             // for (int neighbor : adj.get(i)) {
@@ -57,15 +58,44 @@ public class Prog1_graph_storing_methods{
             }
             System.out.println();
         }
+        return adj;
     }
-    public static void store_in_weightedGraph(){
+    public void store_in_weightedGraph(){
         int[][] edges = {{1,2,4},{1,3,2},{2,4,7},{3,4,1},{2,5,3},{4,5,5}};// Edge list 
-        
-    }
-    public static void main(String[] args) {
-        Prog1_graph_storing_methods obj = new Prog1_graph_storing_methods();
-        // obj.method1();
-        obj.method2();
+        int n = 5;//no. of vertices
+        ArrayList<ArrayList<ArrayList<Integer>>> adj = new ArrayList<>();
+
+        for(int i=0;i<=n;i++){
+            adj.add(new ArrayList<>());//fill adj with n+1 empty arraylists
+        }
+
+        for(int[]edge:edges){
+            int u=edge[0];
+            int v=edge[1];
+            int w=edge[2];
+
+            ArrayList<Integer> list1 = new ArrayList<>();
+            list1.add(v);
+            list1.add(w);
+            adj.get(u).add(list1);
+
+            ArrayList<Integer> list2 = new ArrayList<>();
+            list2.add(u);
+            list2.add(w);
+            adj.get(v).add(list2);//since undirected graph
+        }
+        //Display list of list of lists
+        // for(int i=1;i<adj.size();i++){
+        //     System.out.print(i+" -> ");
+        //     for(int j=0;j<adj.get(i).size();j++){
+        //         System.out.print(adj.get(i).get(j)+", ");
+        //     }
+        //     System.out.println();
+        // }
+        for(int i=1;i<adj.size();i++){
+            System.out.print(i+" -> ");
+            System.out.println(adj.get(i));
+        }
     }
 // Important points:
 //arraylists and arrays follow 0-based indexing but u have to store the vertices based on 1-based indexing so take the array size and arraylist size as n+1
