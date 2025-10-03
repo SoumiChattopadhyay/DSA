@@ -3,6 +3,8 @@
 // list where adj[i] lists all nodes connected to node. Determine if the graph contains any cycles.
 // Note: The graph does not contain any self-edges (edges where a vertex is connected to itself).
 
+// Logic: If neighbor of a node is already visited and it is not it's parent
+// then it was visited through some other path,so cycle exists
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
