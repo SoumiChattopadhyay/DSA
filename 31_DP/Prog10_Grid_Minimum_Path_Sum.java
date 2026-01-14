@@ -32,6 +32,11 @@ public class Prog10_Grid_Minimum_Path_Sum {
                     if(j>0)
                         left=a[i][j]+dp[i][j-1];
                     dp[i][j]=Math.min(up,left);
+                    //you can also initialise up=a[i][j],left=a[i][j] and later do 
+                    // if(i>0) up+=dp[i-1][j] //consider the path
+                    // else up=(int)1e9 //dont consider the path because of i=0 and j=1(say) then there is no up so that path is invalid
+                    // if(j>0) left+=dp[i][j-1] //consider the path
+                    // else left=(int)1e9 //dont consider the path because of j=0 and i=1(say) then there is no left so that path is invalid
                 }
             }
         }
@@ -47,9 +52,9 @@ public class Prog10_Grid_Minimum_Path_Sum {
                 else{
                     int up=Integer.MAX_VALUE,left=Integer.MAX_VALUE;//dont initialize up and left with 0 as 0 might win the Math.min, producing wrong minimum sums
                     if(i>0)
-                        up=a[i][j]+prevRow[j];
+                        up=a[i][j]+prevRow[j];//requiring previous row's j col
                     if(j>0)
-                        left=a[i][j]+currRow[j-1];
+                        left=a[i][j]+currRow[j-1];//requiring current row's j-1 col
                     currRow[j]=Math.min(up,left);
                 }
             }
