@@ -25,7 +25,7 @@ public class Prog28_Longest_Common_Substring {
     // Space Optimization solution
     //Returns length of LCS of 2 strings
     static int funct4(int N, int M,String str1,String str2){
-        int[] prevRow = new int[N+1];
+        int[] prevRow = new int[M+1];
         int[] currRow = new int[M+1];
         // Base cases //the =0 statements are compulsory only if you initialize dp array with -1
         for(int ind2=0;ind2<=M;ind2++) prevRow[ind2]=0;// idx 0 in dp array represents idx -1 in strings
@@ -56,9 +56,9 @@ public class Prog28_Longest_Common_Substring {
         int M = str2.length();
 
         int[][] dp = new int[N+1][M+1];
-        System.out.println(funct3(N-1, M-1,dp, str1, str2));
+        System.out.println(funct3(N, M,dp, str1, str2));
 
         dp = new int[N+1][M+1];
-        System.out.println(funct4(N-1, M-1, str1, str2));
+        System.out.println(funct4(N, M, str1, str2));
     }
 }
