@@ -1,6 +1,4 @@
-import java.util.Arrays;
-
-public class Prog27_Print_LCS{
+public class Prog29_Longest_Palindromic_Subsequence {
     //Returns length of LCS of 2 strings(previous problem) // Tabulation solution
     static int funct3(int N, int M,int[][] dp, String str1,String str2){
         // Base cases
@@ -21,43 +19,33 @@ public class Prog27_Print_LCS{
         }
         return dp[N][M];        
     }
-    // Returns the LCS of two strings
+    // Returns LCS of 2 strings
     static String getLCS(int N, int M, int[][] dp, String str1, String str2){
-        int len = dp[N][M];//stores the lcs length
-        StringBuilder lcs= new StringBuilder(len);
-        int i=N,j=M;
+        int len = dp[N][M];//stores length of LCS
+        StringBuilder lcs = new StringBuilder(len);
+        int i=N, j=M;
         while(i>0 && j>0){
-                if(str1.charAt(i-1)==str2.charAt(j-1)){
-                    lcs.append(str1.charAt(i-1));
+            if(str1.charAt(i-1)==str2.charAt(j-1)){
+                lcs.append(str1.charAt(i-1));
+                i--;
+                j--;
+            }else{
+                if(dp[i-1][j]>dp[i][j-1]){
                     i--;
-                    j--;
                 }else{
-                    if(dp[i-1][j]>dp[i][j-1]) i--;
-                    else j--;
+                    j--;
                 }
+            }
         }
         return lcs.reverse().toString();
     }
     public static void main(String[] args) {
-        String str1 = "acd";
+        String str1 = "bbabcbcab";
+        String str2 = new StringBuilder(str1).reverse().toString();
         int N = str1.length();
-        String str2 = "ced";
         int M = str2.length();
-
         int[][] dp = new int[N+1][M+1];
-        System.out.println(funct3(N, M, dp, str1, str2));
-
-        // Printing the dp array 
-        int k=0;
-        System.out.println("----------------------------------");
-        System.out.println("   0  1  2  3");
-        for(int[] arr:dp){
-            System.out.print(k++ +" ");
-            System.out.println(Arrays.toString(arr));
-        }
-        System.out.println("----------------------------------");
-
-
-        System.out.println(getLCS(N,M,dp, str1, str2));
+        System.out.println("Length of Longest Palindromic Subsequence of the string "+str1+" is : "+funct3(N, M, dp, str1, str2));
+        System.out.println("Longest Palindromic Subsequence of the string "+str1+" is : "+getLCS(N, M, dp, str1, str2));
     }
 }

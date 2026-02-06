@@ -4,9 +4,9 @@ public class Prog28_Longest_Common_Substring {
     static int funct3(int N, int M,int[][] dp, String str1,String str2){
         // if we dont initialize dp array with -1 the below code is not needed
         // Base cases 
-        // for(int ind1=0;ind1<=M;ind1++) dp[ind1][0]=0;// idx 0 in dp array represents idx -1 in strings
+        // for(int ind1=0;ind1<=N;ind1++) dp[ind1][0]=0;// idx 0 in dp array represents idx -1 in strings
         // for(int ind2=0;ind2<=M;ind2++) dp[0][ind2]=0;// idx 0 in dp array represents idx -1 in strings
-        int ans=0;
+        int ans=0;//will store the max el in the dp array
         for(int ind1=1;ind1<=N;ind1++){
             for(int ind2=1;ind2<=M;ind2++){
                 //match case
@@ -30,7 +30,7 @@ public class Prog28_Longest_Common_Substring {
         // Base cases //the =0 statements are compulsory only if you initialize dp array with -1
         for(int ind2=0;ind2<=M;ind2++) prevRow[ind2]=0;// idx 0 in dp array represents idx -1 in strings
         
-        int ans=0;
+        int ans=0;//will store the max el in the dp array
         for(int ind1=1;ind1<=N;ind1++){
             currRow = new int[M+1];
             prevRow[0]=currRow[0]=0;
