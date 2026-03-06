@@ -1,0 +1,179 @@
+Alright Soumi, you want the **full sorting multiverse** for string array by length?
+We’re opening every door 🚪✨
+
+Given:
+
+```java
+String[] arr = {"apple", "kiwi", "banana", "fig", "watermelon"};
+```
+
+Goal → Sort by **length (ascending)**
+
+---
+
+# 🟢 1️⃣ Using Comparator (Anonymous Class)
+
+```java
+Arrays.sort(arr, new Comparator<String>() {
+    @Override
+    public int compare(String s1, String s2) {
+        return s1.length() - s2.length();
+    }
+});
+```
+
+Classic. Interview safe.
+
+---
+
+# 🟢 2️⃣ Using Comparator (Lambda)
+
+```java
+Arrays.sort(arr, (s1, s2) -> s1.length() - s2.length());
+```
+
+Shorter. Modern Java.
+
+---
+
+# 🟢 3️⃣ Using Comparator.comparingInt()
+
+```java
+Arrays.sort(arr, Comparator.comparingInt(String::length));
+```
+
+Cleanest professional version.
+
+---
+
+# 🟢 4️⃣ Using Comparator + ThenComparing (Tie Break Alphabetically)
+
+```java
+Arrays.sort(arr,
+    Comparator.comparingInt(String::length)
+              .thenComparing(String::compareTo));
+```
+
+Length first. Dictionary next.
+
+---
+
+# 🟢 5️⃣ Using Comparable (Wrapper Class)
+
+Since we cannot modify `String`, we wrap it.
+
+```java
+class MyString implements Comparable<MyString> {
+    String value;
+
+    MyString(String value){
+        this.value = value;
+    }
+
+    @Override
+    public int compareTo(MyString other){
+        return Integer.compare(this.value.length(), other.value.length());
+    }
+
+    public String toString(){
+        return value;
+    }
+}
+```
+
+Then:
+
+```java
+Arrays.sort(arrOfMyString);
+```
+
+Object sorts itself. Self-aware string. 🤖
+
+---
+
+# 🟢 6️⃣ Using Collections.sort() (If Using List)
+
+```java
+List<String> list = Arrays.asList(arr);
+
+Collections.sort(list, (s1, s2) -> s1.length() - s2.length());
+```
+
+Works on lists.
+
+---
+
+# 🟢 7️⃣ Manual Sorting (Bubble Sort)
+
+```java
+for(int i=0;i<arr.length-1;i++){
+    for(int j=0;j<arr.length-i-1;j++){
+        if(arr[j].length() > arr[j+1].length()){
+            String temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp;
+        }
+    }
+}
+```
+
+Primitive but powerful.
+
+---
+
+# 🟢 8️⃣ Using Streams (Returns New Array)
+
+```java
+arr = Arrays.stream(arr)
+            .sorted(Comparator.comparingInt(String::length))
+            .toArray(String[]::new);
+```
+
+Functional style. Feels elegant.
+
+---
+
+# 🟢 9️⃣ Using TreeSet (Auto Sorted Structure)
+
+```java
+Set<String> set = new TreeSet<>(Comparator.comparingInt(String::length));
+set.addAll(Arrays.asList(arr));
+```
+
+⚠ Removes duplicates though.
+
+---
+
+# 🟢 🔟 Using PriorityQueue
+
+```java
+PriorityQueue<String> pq =
+    new PriorityQueue<>((a,b) -> a.length() - b.length());
+
+pq.addAll(Arrays.asList(arr));
+```
+
+Removes in sorted order one by one.
+
+---
+
+# 🎓 Viva Summary
+
+| Method        | Where Used              |
+| ------------- | ----------------------- |
+| Comparable    | Natural ordering        |
+| Comparator    | Custom ordering         |
+| Lambda        | Short syntax            |
+| Streams       | Functional programming  |
+| Manual sort   | Algorithm understanding |
+| TreeSet       | Auto-sorted storage     |
+| PriorityQueue | Heap based sorting      |
+
+---
+
+If interviewer says
+“Explain difference between Comparable and Comparator with example”
+
+You’re now armed with artillery 💣
+
+If you want descending versions of all too, we flip the inequality and turn gravity upside down 🌍

@@ -92,8 +92,8 @@ public class Prog43_Length_of_Longest_Increasing_Subsequence {
         }
         return maxi;
     }
-    // Printing the LIS and returning LIS length
-    static int funct6(int[] arr, int n){
+    // Returning the LIS 
+    static int[] funct6(int[] arr, int n){
         int[] dp = new int[n];
         int[] hash = new int[n];
         for(int ind=0;ind<n;ind++){
@@ -111,8 +111,8 @@ public class Prog43_Length_of_Longest_Increasing_Subsequence {
                 }                
             }
             if(dp[ind]>maxi){
-                maxi=dp[ind];//track maximum LIS
-                lastIdx=ind;
+                maxi=dp[ind];//LIS length
+                lastIdx=ind;//last index where LIS ends
             }
         }
         int[] lis = new int[maxi];
@@ -128,8 +128,7 @@ public class Prog43_Length_of_Longest_Increasing_Subsequence {
             lis[i] = lis[j];
             lis[j] = temp;
         }
-        System.out.println(Arrays.toString(lis));
-        return maxi;
+        return lis;
     }
     //Find length of LIS Using Binary Search (Best approach)
     static int funct7(int[] arr, int n){
@@ -164,7 +163,12 @@ public class Prog43_Length_of_Longest_Increasing_Subsequence {
         len++;
     Why? Because the next free position is exactly at index len.
 
-    You have already declared temp of size n so there will be no Out of Bounds error */
+    You have already declared temp of size n so there will be no Out of Bounds error 
+    
+    
+    One-Line Memory Trick
+        len - 1 → last valid element
+        len → next empty position */
     static int binarySearch(int search, int[] temp, int lb, int ub){//lb means lower bound(or start or left) ub means upper bound(or end or right)
         while(lb<=ub){
             int mid = lb+(ub-lb)/2;
@@ -199,7 +203,7 @@ public class Prog43_Length_of_Longest_Increasing_Subsequence {
         n=arr.length;
         System.out.println(funct5(arr, n));
 
-        System.out.println(funct6(arr, n));
+        System.out.println(Arrays.toString(funct6(arr, n)));
 
         arr = new int[]{1,7,8,4,5,6,-1,9};
         n=arr.length;
