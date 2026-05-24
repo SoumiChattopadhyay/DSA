@@ -55,11 +55,15 @@ public class Prog0_1_Binary_Tree_Simplified {
         if(node==null){
             return;
         }
+        
         prettyDisplay(node.right,level+1);
-        for(int i=0;i<level;i++){
+        
+        for(int i=0;i<level-1;i++){
             System.out.print("|\t");
         }
-        System.out.println("|----->"+node.data);
+        if(level==0) System.out.println(node.data);
+        else System.out.println("|----->"+node.data);
+        
         prettyDisplay(node.left,level+1);
     }
     public static void main(String[] args) {
@@ -121,7 +125,20 @@ false
                 70
                 100 
                 
+
+
+|         |------->100
+|------->80
+|        |------->70
+50
+|         |------->40
+|------->30
+|        |------->20
                 
+If we dont write these lines
+if(level==0) System.out.println(node.data);
+else System.out.println("|----->"+node.data);
+And just write : System.out.println("|----->"+node.data);
 
 |         |         |------->100
 |         |------->80
@@ -132,4 +149,18 @@ false
 |        |         |------->40
 |        |------->30
 |        |        |------->20
-                */
+                
+If we dont write this: for(int i=0;i<level-1;i++){
+And write this: for(int i=0;i<level;i++){
+|         |         |------->100
+|         |------->80
+|         |        |------->70
+|
+50
+|
+|        |         |------->40
+|        |------->30
+|        |        |------->20
+
+
+*/
