@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Prog5_Fruit_into_Baskets {
+public class Prog05_Fruit_into_Baskets {
     // Brute
     static int funct1(int[] arr, int baskets){
         int n=arr.length;

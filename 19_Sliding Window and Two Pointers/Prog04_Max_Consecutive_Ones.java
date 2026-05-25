@@ -1,4 +1,4 @@
-public class Prog4_Max_Consecutive_Ones {// or Longest Subarray with k zeroes
+public class Prog04_Max_Consecutive_Ones {// or Longest Subarray with k zeroes
     static int funct1(int[] arr, int k){
         int n=arr.length;
         int maxLen=0;

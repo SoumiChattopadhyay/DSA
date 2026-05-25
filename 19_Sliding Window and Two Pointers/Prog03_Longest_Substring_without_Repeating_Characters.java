@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Prog3_Longest_Substring_without_Repeating_Characters{
+public class Prog03_Longest_Substring_without_Repeating_Characters{
     // Brute
     static int funct1(String str){
         int n=str.length();

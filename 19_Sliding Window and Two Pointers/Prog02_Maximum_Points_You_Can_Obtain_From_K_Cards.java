@@ -1,4 +1,4 @@
-public class Prog2_Maximum_Points_You_Can_Obtain_From_K_Cards {
+public class Prog02_Maximum_Points_You_Can_Obtain_From_K_Cards {
     static int funct1(int[] arr, int K){
         int n=arr.length;
         int lsum=0,rsum=0,maxSum=0;

@@ -1,4 +1,4 @@
-public class Prog1_Longest_Subarray_with_Sum_Less_Than_Equal_To_K {
+public class Prog01_Longest_Subarray_with_Sum_Less_Than_Equal_To_K {
     // Brute
     static int funct1(int[] arr, int K){
         int n=arr.length;
