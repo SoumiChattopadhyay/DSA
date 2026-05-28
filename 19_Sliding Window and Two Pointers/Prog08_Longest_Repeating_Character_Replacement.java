@@ -27,26 +27,51 @@ public class Prog08_Longest_Repeating_Character_Replacement {
         while(r<n){
             hash[str.charAt(r)-'A']++;
             maxf = Math.max(maxf,hash[str.charAt(r)-'A']);
-            int len = r-l+1;
-            int changes = len - maxf;
-            while(changes>k){
+            while((r-l+1)-maxf > k){
                 hash[str.charAt(l)-'A']--;
                 maxf=0;
                 for(int i=0;i<26;i++){
                     maxf = Math.max(maxf,hash[i]);
                 }
-                len = r-l+1;
-                changes = len - maxf;
                 l++;
             }
-            if(changes<=k){
-                maxLen = Math.max(maxLen,len);
+            if((r-l+1)-maxf <= k){
+                maxLen = Math.max(maxLen,r-l+1);
             }
             r++;
         }
         return maxLen;
     }
-     // Optimal
+    // Better 
+    // (Same code just using variables len and changes - that needs some extra lines)
+    //  static int funct3(String str, int k){
+    //     int n = str.length();
+    //     int hash[] = new int[26];
+    //     int l=0,r=0,maxf=0,maxLen=0;
+    //     while(r<n){
+    //         hash[str.charAt(r)-'A']++;
+    //         maxf = Math.max(maxf,hash[str.charAt(r)-'A']);
+    //         int len = r-l+1;
+    //         int changes = len - maxf;
+    //         while(changes>k){
+    //             hash[str.charAt(l)-'A']--;
+    //             for(int i=0;i<26;i++){
+    //                 maxf = Math.max(maxf,hash[i]);
+    //             }
+    //             l++;
+    //             len = r-l+1;
+    //             changes = len - maxf;
+    //         }
+    //         if(changes<=k){
+    //             maxLen = Math.max(maxLen,len);
+    //         }
+    //         r++;
+    //     }
+    //     return maxLen;
+    // }
+
+
+    // Optimal
     static int funct3(String str, int k){
         int n = str.length();
         int hash[] = new int[26];
@@ -54,21 +79,42 @@ public class Prog08_Longest_Repeating_Character_Replacement {
         while(r<n){
             hash[str.charAt(r)-'A']++;
             maxf = Math.max(maxf,hash[str.charAt(r)-'A']);
-            int len = r-l+1;
-            int changes = len - maxf;
-            if(changes>k){
+            if((r-l+1)-maxf > k){
                 hash[str.charAt(l)-'A']--;
-                len = r-l+1;
-                changes = len - maxf;
                 l++;
             }
-            if(changes<=k){
-                maxLen = Math.max(maxLen,len);
+            if((r-l+1)-maxf <= k){
+                maxLen = Math.max(maxLen,r-l+1);
             }
             r++;
         }
         return maxLen;
     }
+
+     // Optimal
+    // (Same code just using variables len and changes - that needs some extra lines)
+    // static int funct3(String str, int k){
+    //     int n = str.length();
+    //     int hash[] = new int[26];
+    //     int l=0,r=0,maxf=0,maxLen=0;
+    //     while(r<n){
+    //         hash[str.charAt(r)-'A']++;
+    //         maxf = Math.max(maxf,hash[str.charAt(r)-'A']);
+    //         int len = r-l+1;
+    //         int changes = len - maxf;
+    //         if(changes>k){
+    //             hash[str.charAt(l)-'A']--;
+    //             l++;
+    //             len = r-l+1;
+    //             changes = len - maxf;
+    //         }
+    //         if(changes<=k){
+    //             maxLen = Math.max(maxLen,len);
+    //         }
+    //         r++;
+    //     }
+    //     return maxLen;
+    // }
     public static void main(String[] args) {
         String str = "AABABBA";
         int k=2;
