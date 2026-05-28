@@ -46,10 +46,34 @@ public class Prog08_Longest_Repeating_Character_Replacement {
         }
         return maxLen;
     }
+     // Optimal
+    static int funct3(String str, int k){
+        int n = str.length();
+        int hash[] = new int[26];
+        int l=0,r=0,maxf=0,maxLen=0;
+        while(r<n){
+            hash[str.charAt(r)-'A']++;
+            maxf = Math.max(maxf,hash[str.charAt(r)-'A']);
+            int len = r-l+1;
+            int changes = len - maxf;
+            if(changes>k){
+                hash[str.charAt(l)-'A']--;
+                len = r-l+1;
+                changes = len - maxf;
+                l++;
+            }
+            if(changes<=k){
+                maxLen = Math.max(maxLen,len);
+            }
+            r++;
+        }
+        return maxLen;
+    }
     public static void main(String[] args) {
         String str = "AABABBA";
         int k=2;
         System.out.println(funct1(str, k));
         System.out.println(funct2(str, k));
+        System.out.println(funct3(str, k));
     }
 }
