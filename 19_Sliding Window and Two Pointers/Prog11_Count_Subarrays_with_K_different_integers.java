@@ -36,9 +36,7 @@ public class Prog11_Count_Subarrays_with_K_different_integers {
                 if(map.get(arr[l])==0) map.remove(arr[l]);
                 l++;
             }
-            if(map.size()<=k){
-                cnt+=(r-l+1);
-            }
+            cnt+=(r-l+1);
             r++;
         }
         return cnt;
