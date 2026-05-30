@@ -1,3 +1,4 @@
+
 public class Prog12_Minimum_Window_Substring {
     // Brute 
     static String funct1(String s, String t){
@@ -25,13 +26,39 @@ public class Prog12_Minimum_Window_Substring {
         if(startIdx==-1) return "";
         return s.substring(startIdx, startIdx+minLen);
     }
+    // Optimal
+    static String funct2(String s, String t){
+        int n = s.length();
+        int m = t.length();
+        int l=0,r=0,cnt=0,startIdx=-1, minLen=Integer.MAX_VALUE;
+        int[] hash = new int[256];
+        for(int i=0;i<m;i++) hash[t.charAt(i)]++;
+        while(r<n){
+            if(hash[s.charAt(r)]>0) cnt+=1;
+            hash[s.charAt(r)]--;
+            while(cnt==m){
+                if(r-l+1<minLen){
+                    minLen=r-l+1;
+                    startIdx=l;
+                }
+                hash[s.charAt(l)]++;
+                if(hash[s.charAt(l)]>0) cnt-=1;
+                l++;
+            }
+            r++;
+        }
+        if(startIdx==-1) return "";
+        return s.substring(startIdx, startIdx+minLen);
+    }
     public static void main(String[] args) {
         String s = "ddaaabbca";
         String t = "abc";
         System.out.println(funct1(s, t));
+        System.out.println(funct2(s, t));
 
         s = "ddaaabbca";
         t = "abbc";
         System.out.println(funct1(s, t));
+        System.out.println(funct2(s, t));
     }
 }
