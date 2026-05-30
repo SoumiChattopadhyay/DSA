@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class Prog12_Minimum_Window_Substring {
     // Brute 
     static String funct1(String s, String t){
