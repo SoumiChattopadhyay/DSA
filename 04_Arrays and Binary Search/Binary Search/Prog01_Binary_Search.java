@@ -1,4 +1,4 @@
-public class Prog5_Binary_Search {
+public class Prog01_Binary_Search {
     public int binarySearch(int ar[],int key){
         int start=0, end=ar.length-1;
         while(start<=end){
@@ -14,7 +14,7 @@ public class Prog5_Binary_Search {
         return -1;
     }
     public static void main(String[] args) {
-        Prog5_Binary_Search obj = new Prog5_Binary_Search();
+        Prog01_Binary_Search obj = new Prog01_Binary_Search();
         int idx = obj.binarySearch(new int[]{2,3,4,5,6,7,8},8);
         if(idx==-1)
             System.out.println("Search NOT found");

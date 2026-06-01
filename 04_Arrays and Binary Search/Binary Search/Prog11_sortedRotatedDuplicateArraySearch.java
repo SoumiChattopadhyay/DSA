@@ -1,5 +1,5 @@
 // The Pivot taken here is the Peak Before the Drop (Largest Element) not the Rotation point
-public class Prog6_sortedRotatedDuplicateArraySearch {
+public class Prog11_sortedRotatedDuplicateArraySearch {
     public static void main(String[] args) {
         int ar[] = {2,5,6,0,0,1,2};
         // int ar[] = {0,5,6,0,0,0,0};//mid el.= start el.and mid el.= end el.

@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Prog5_firstandLastOccurenceofTarget {
+public class Prog03_firstandLastOccurenceofTarget {
     public static int[] searchRange(int[] nums, int target) {
         int ans[]={-1,-1};
          ans[0]=search(nums,target,true);
@@ -32,7 +32,7 @@ public class Prog5_firstandLastOccurenceofTarget {
 public static void main(String[] args) {
     int[] arr = {5,7,7,8,8,10,8,7,8};
     int target = 8;
-    int ar[]=Prog5_firstandLastOccurenceofTarget.searchRange(arr, target);
+    int ar[]=Prog03_firstandLastOccurenceofTarget.searchRange(arr, target);
     System.out.println(Arrays.toString(ar));
 }
   static void printArray(int start, int end, int[] arr){

@@ -1,7 +1,7 @@
 //find pivot
 //binary search left half of pivot
 //binary search right half of pivot
-public class Prog6_sortedRotatedArraySearch {
+public class Prog10_sortedRotatedArraySearch {
     public static void main(String[] args) {
         // int ar[]={5,1,3};//first time
         int ar[] = {4,5,6,7,0,1,2};//sorted and rotated array around 2. Pivot taken here is the Peak Before the Drop (Largest Element)i.e. 7

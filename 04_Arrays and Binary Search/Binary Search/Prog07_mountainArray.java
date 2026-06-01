@@ -1,4 +1,4 @@
-public class Prog6_mountainArray {//Mountain array or Bitonic Array
+public class Prog07_mountainArray {//Mountain array or Bitonic Array
     public static void main(String[] args) {
         int[] arr = {3,5,2,1};
         System.out.println(findinmountainArray(arr,1));

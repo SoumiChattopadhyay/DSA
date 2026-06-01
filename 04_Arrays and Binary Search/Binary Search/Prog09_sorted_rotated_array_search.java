@@ -1,4 +1,4 @@
-public class Prog6_sorted_rotated_array_search {
+public class Prog09_sorted_rotated_array_search {
     public static int search(int ar[],int start, int end, int target){
         int mid = start + (end-start)/2;
         if(start>end){

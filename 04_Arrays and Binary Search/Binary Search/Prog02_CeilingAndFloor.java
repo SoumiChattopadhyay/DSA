@@ -1,4 +1,4 @@
-public class Prog5_CeilingAndFloor {
+public class Prog02_CeilingAndFloor {
      // (Ceiling)return the index: smallest number in array greater than or equal to target
      // (Floor)return the index: greatest number in array less than or equal to target
    public static int findCeiling(int nums[],int target){

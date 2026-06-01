@@ -1,4 +1,4 @@
-public class Prog5_orderAgnosticBinarySearch {
+public class Prog05_orderAgnosticBinarySearch {
     public int binarySearch(int ar[], int key) {
         int start = 0, end = ar.length - 1;
 
@@ -28,7 +28,7 @@ public class Prog5_orderAgnosticBinarySearch {
     }
 
     public static void main(String[] args) {
-        Prog5_orderAgnosticBinarySearch obj = new Prog5_orderAgnosticBinarySearch();
+        Prog05_orderAgnosticBinarySearch obj = new Prog05_orderAgnosticBinarySearch();
 
         int idx = obj.binarySearch(new int[]{8, 7, 6, 5, 4, 3, 2}, 8); // Works for descending
         // int idx = obj.binarySearch(new int[]{2, 3, 4, 5, 6, 7, 8}, 8); // Works for ascending

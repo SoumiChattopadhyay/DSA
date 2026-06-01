@@ -2,7 +2,7 @@
 // Find:the smallest character that is greater than the target. BUT there is one special rule:
 // If no character in the array is greater than the target, return the first character of the array.
 // This means the array behaves like a circle, not a straight line.
-public class Prog5_smallestCharGreaterthanTarget {
+public class Prog06_smallestCharGreaterthanTarget {
         public static char nextGreatestLetter(char[] letters, char target) {
             int start=0, end=letters.length-1;
             if(target>=letters[end]){
@@ -23,7 +23,7 @@ public class Prog5_smallestCharGreaterthanTarget {
     public static void main(String[] args) {
         char[] arr = {'c','f','g'};//array has atleast two letters. so if target>arr.length-1 then return -1 condn not needed
         char target = 'f';
-        System.out.println(Prog5_smallestCharGreaterthanTarget.nextGreatestLetter(arr, target));
+        System.out.println(Prog06_smallestCharGreaterthanTarget.nextGreatestLetter(arr, target));
     }
 }
 
