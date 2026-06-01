@@ -7,6 +7,12 @@ public class Prog3_reverse_array {
             start++;
             end--;
         }
+        // Swapping using 2 variables
+        // int a=10,b=20;
+        // a=a+b;
+        // b=a-b;
+        // a=a-b;
+        // System.out.println(a+" "+b);
         return ar;
     }
     public void printArray(int ar[]){

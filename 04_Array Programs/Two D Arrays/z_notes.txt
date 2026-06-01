@@ -1,0 +1,13 @@
+Real life examples of N-D arrays
+1. 1D array : marks of students
+2. 2D array : subject vs marks
+3. 3D arrays : Images (each pixel has three values for Red, Green, and Blue, requiring three 2D arrays).
+4. 4D arrays : Videos (a sequence of 3D arrays, where each frame consists of RGB color channels changing over time).
+Why Row=matrix.length but Column=matrix[0].length? 
+•  matrix.length gives the number of rows because a matrix is an array of arrays, and this represents the number of sub-arrays.
+•  matrix[0].length gives the number of columns because it represents the length of the first row (assuming a rectangular matrix).
+2-D array in memory
+
+In Row major, the linear fashion looks like – 1st row els  2nd row els  3rd row els
+In Column major, the linear fashion looks like – 1st col els  2nd col els  3rd col els
+But in JAVA 2D array els are not stored like this. N separate arrays are created somewhere in the memory and the original array has their addresses. So not necessarily contiguous fashion is followed.

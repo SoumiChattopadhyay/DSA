@@ -4,7 +4,7 @@ public class Prog5_infiniteArray {
         int target = 100;
         System.out.println(ans(arr,target));
 }
-    public static int ans(int ar[],int target){//finds correct start-end range, gives it to binarySearch funct and returns the ans that  binarySearch funct returns
+    public static int ans(int ar[],int target){//finds correct start-end range, gives it to binarySearch funct and returns the ans that binarySearch funct returns
         int start=0, end=1;//starting with box of size 1(having 1 el) and exponentially going to that big box which contains the target
         while(target>ar[end]){//increasing size of box exponentially
             int newStart=end+1;

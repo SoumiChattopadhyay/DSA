@@ -1,3 +1,7 @@
+// Given: a sorted array of characters, a target character
+// Find:the smallest character that is greater than the target. BUT there is one special rule:
+// If no character in the array is greater than the target, return the first character of the array.
+// This means the array behaves like a circle, not a straight line.
 public class Prog5_smallestCharGreaterthanTarget {
         public static char nextGreatestLetter(char[] letters, char target) {
             int start=0, end=letters.length-1;
