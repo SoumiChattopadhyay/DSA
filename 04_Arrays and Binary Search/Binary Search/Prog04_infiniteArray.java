@@ -2,13 +2,13 @@ public class Prog04_infiniteArray {
     public static void main(String[] args) {
         int[] arr = {3, 5, 7, 9, 10, 90, 100, 130, 140, 160, 170};
         int target = 100;
-        System.out.println(ans(arr,target));
-}
-    public static int ans(int ar[],int target){//finds correct start-end range, gives it to binarySearch funct and returns the ans that binarySearch funct returns
+        System.out.println(findRange(arr,target));
+    }
+    public static int findRange(int ar[],int target){//finds correct start-end range, gives it to binarySearch funct and returns the ans that binarySearch funct returns
         int start=0, end=1;//starting with box of size 1(having 1 el) and exponentially going to that big box which contains the target
         while(target>ar[end]){//increasing size of box exponentially
-            int newStart=end+1;
-            end=end+(end-start+1)*2;
+            int newStart=end+1;//end+1 is the new start
+            end=end+(end-start+1)*2;//end + prev box size*2 is the new end
             start=newStart;
 
             // Ensuring end does not exceed array bounds
