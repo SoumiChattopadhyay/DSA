@@ -28,7 +28,7 @@ public class Prog03_firstandLastOccurenceofTarget {
                 start=mid+1;
         }
         return ans;
-}
+    }
 public static void main(String[] args) {
     int[] arr = {5,7,7,8,8,10,8,7,8};
     int target = 8;
