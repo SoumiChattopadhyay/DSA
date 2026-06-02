@@ -1,15 +1,16 @@
 public class Prog12_Nth_Root_of_an_Integer {
     static int findPower(int a, int n, int m){
         long ans=1;
+        long base=a;
         while(n>0){
             if(n%2!=0){
-                ans=ans*a;
+                ans=ans*base;
                 if(ans>m) return 2;
                 n--;
             }
             else if(n%2==0){
-                a=a*a;
-                if(a>m) return 2;
+                base=base*base;
+                if(base>m) return 2;
                 n=n/2;
             }
         }
