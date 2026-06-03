@@ -20,7 +20,6 @@ public class Prog16_Smallest_Divisor_given_a_Threshold {
     }
     // Optimal
     static int funct2(int[] arr, int limit){
-        int n=arr.length;
         int maxEl=arr[0];
         for(int num:arr) maxEl=Math.max(maxEl,num);
         int low=1,high=maxEl,ans=-1;
