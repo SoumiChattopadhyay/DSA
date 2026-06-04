@@ -1,4 +1,4 @@
-public class Prog15_Sqrt_of_a_No {
+public class Prog12_Sqrt_of_a_No {
     // Linear Search
     static int findSqrt(int n){
         int ans=0;

@@ -1,4 +1,4 @@
-public class Prog12_Nth_Root_of_an_Integer {
+public class Prog13_Nth_Root_of_an_Integer {
     static int findPower(int a, int n, int m){
         long ans=1;
         long base=a;

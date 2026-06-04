@@ -1,4 +1,4 @@
-public class Prog14_Min_Days_to_make_M_bouquets {
+public class Prog15_Min_Days_to_make_M_bouquets {
     // Brute
     static int find_Min_Days(int[] arr, int m, int k){
         int n = arr.length;//no. of roses
