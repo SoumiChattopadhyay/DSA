@@ -26,4 +26,3 @@ public class Prog06_smallestCharGreaterthanTarget {
         System.out.println(Prog06_smallestCharGreaterthanTarget.nextGreatestLetter(arr, target));
     }
 }
-

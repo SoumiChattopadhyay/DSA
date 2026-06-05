@@ -14,7 +14,7 @@ public class Prog07_mountainArray {//Mountain array or Bitonic Array
     }
     public static int peakIndexInMountainArray(int[] ar) {
         int start=0,end=ar.length-1;
-        while(start<end){// We use < not = becoz when start=end in the end then we will get the largest element
+        while(start<end){// We run the loop till < not till = becoz when start=end in the end then we will get the largest element
             int mid=start+(end-start)/2;
             if(ar[mid]>ar[mid+1])//we are in descending part of the array and this descending part might or might not contain the peak element
                 end=mid;
