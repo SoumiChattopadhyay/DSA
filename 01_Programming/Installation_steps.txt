@@ -1,0 +1,11 @@
+Go to this link: https://www.oracle.com/java/technologies/downloads/#jdk21-windows
+Install  : x64 MSI Installer (for Windows)
+Run it
+Note the installation path : C:\Program Files\Java\jdk-21
+Press Win, type Edit the system environment variables → open it.
+Click Environment Variables….
+Under System variables (or User variables) click New…:
+Variable name: JAVA_HOME
+Variable value: C:\Program Files\Java\jdk-21
+Find the Path variable → Edit → New → add: %JAVA_HOME%\bin
+Click OK all the way out.
