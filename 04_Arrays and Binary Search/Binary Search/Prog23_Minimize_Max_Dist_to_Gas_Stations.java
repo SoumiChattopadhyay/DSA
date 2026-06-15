@@ -7,7 +7,7 @@ public class Prog23_Minimize_Max_Dist_to_Gas_Stations {
             int maxInd=-1;
             for(int i=0;i<n-1;i++){//loop to figure out maxInd(sector with max dist(or sector which has a subsector which has the max dist out of all sectors and subsectors) In both cases we will store sector no. only, not subsectorn) and maxVal(dist of that sector)
                 int diff=arr[i+1]-arr[i];
-                int sectorLength = diff/(howMany[i]+1);
+                double sectorLength = diff/(double)(howMany[i]+1);
                 if(maxVal<sectorLength){
                     maxVal=sectorLength;
                     maxInd=i;
@@ -18,7 +18,7 @@ public class Prog23_Minimize_Max_Dist_to_Gas_Stations {
         double maxAns=-1;// loop to figure out the max dist of any sector or subsector
         for(int i=0;i<n-1;i++){
             int diff=arr[i+1]-arr[i];
-            int sectorLength=diff/(howMany[i]+1);
+            double sectorLength=diff/(double)(howMany[i]+1);
             maxAns=Math.max(maxAns,sectorLength);
         }
         return maxAns;
