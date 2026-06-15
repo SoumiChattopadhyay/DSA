@@ -33,9 +33,9 @@ public class Prog21_Painter_s_Partition {//Painter's Partition (same solution as
         return painters;
     }
     public static void main(String[] args) {
-        int[] arr = {10,20,30,40};
+        int[] units = {10,20,30,40};
         int painters=2;
-        System.out.println(allocate_Units(arr, painters));
+        System.out.println(allocate_Units(units, painters));
     }
     
 }
