@@ -18,6 +18,12 @@ public class Prog15_Rearrange_Array_Els_By_Sign {
         }
         return arr;
     }
+    // i -> 2*i, 2*i+1
+    // 0 -> 0,1
+    // 1 -> 2,3
+    // 2 -> 4,5
+    // 3 -> 6,7
+
     // Optimal soln
     static int[] funct2(int[] arr, int n){
         int posIdx=0;
