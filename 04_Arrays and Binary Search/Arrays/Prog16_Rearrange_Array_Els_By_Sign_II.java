@@ -16,7 +16,7 @@ public class Prog16_Rearrange_Array_Els_By_Sign_II {
                 neg.add(arr[i]);
         }
 
-        // If no. of pos els > no. of neg els. O()=O(n)
+        // If no. of pos els > no. of neg els. O(n)
         if(pos.size()>neg.size()){
             for(int i=0;i<neg.size();i++){
                 arr[2*i]=pos.get(i);
