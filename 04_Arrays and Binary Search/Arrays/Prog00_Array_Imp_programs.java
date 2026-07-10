@@ -46,7 +46,7 @@ public class Prog00_Array_Imp_programs {
         }
     }
     // Move zeroes to end
-    // Brute, TC=O(N)
+    // Brute, TC=O(N), SC=O(N) as in worst case k=N
     static void move0sToEnd_1(int[] arr, int n){
         ArrayList<Integer> temp = new ArrayList<>();
         for(int i=0;i<n;i++){//copy non-zero els to another list. We took list becoz we dont know the exact size
@@ -62,7 +62,7 @@ public class Prog00_Array_Imp_programs {
             arr[i]=0;
         }
     }
-    // Optimal
+    // Optimal, TC=O(N),SC=O(1)
     static void move0sToEnd_2(int[] arr, int n){
         int j=-1;
         //make j point to the first 0
@@ -73,6 +73,7 @@ public class Prog00_Array_Imp_programs {
             }
         }
         if(j==-1) return;//means no 0s present in the array
+        //Start looping from j+1
         for(int i=j+1;i<n;i++){
             if(arr[i]!=0){
                 int temp=arr[i];
@@ -82,6 +83,15 @@ public class Prog00_Array_Imp_programs {
             }
         }
     }
+    // Linear Search
+     static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target)
+                return i;
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5};
         int n=arr.length;
@@ -104,5 +114,10 @@ public class Prog00_Array_Imp_programs {
         n=arr.length;
         move0sToEnd_2(arr,n);
         System.out.println(Arrays.toString(arr));
+
+        arr = new int[]{4,5,7,2,9};
+        System.out.println(linearSearch(arr,2));
+
+        
     }
 }
