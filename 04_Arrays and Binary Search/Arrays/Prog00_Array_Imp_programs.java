@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeSet;
 public class Prog00_Array_Imp_programs {
     // Left Rotate array by 1 place
     // TC=O(N), SC=O(1)
@@ -65,16 +66,14 @@ public class Prog00_Array_Imp_programs {
     // Optimal, TC=O(N),SC=O(1)
     static void move0sToEnd_2(int[] arr, int n){
         int j=-1;
-        //make j point to the first 0
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n;i++){//make j point to the first 0, TC=O(x)
             if(arr[i]==0){
                 j=i;
                 break;
             }
         }
         if(j==-1) return;//means no 0s present in the array
-        //Start looping from j+1
-        for(int i=j+1;i<n;i++){
+        for(int i=j+1;i<n;i++){//Start looping from j+1, TC=O(N-x)
             if(arr[i]!=0){
                 int temp=arr[i];
                 arr[i]=arr[j];
@@ -83,8 +82,8 @@ public class Prog00_Array_Imp_programs {
             }
         }
     }
-    // Linear Search
-     static int linearSearch(int[] arr, int target) {
+    // Linear Search TC=O(N),SC=O(1)
+    static int linearSearch(int[] arr, int target){
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == target)
                 return i;
@@ -92,6 +91,48 @@ public class Prog00_Array_Imp_programs {
         return -1;
     }
 
+    // Union of Two Sorted Arrays
+    // Brute, TC=O(N1 log N)+O(N2 log N)+O(N1+N2), SC=2*O(N1+N2)
+    static ArrayList<Integer> union_1(int[] arr1, int[] arr2){//You may use array also 
+        TreeSet<Integer> set = new TreeSet<>();
+        for(int num:arr1) set.add(num); //O(N1 log N)
+        for(int num:arr2) set.add(num);//O(N2 log N)
+        return new ArrayList<>(set);//O(N1+N2)
+    }
+    // Optimal, TC=O(N1+N2), SC=O(N1+N2)
+    static ArrayList<Integer> union_2(int[] arr1, int[] arr2){
+        int n1=arr1.length;
+        int n2=arr2.length;
+        ArrayList<Integer> union = new ArrayList<>();
+        int i=0,j=0;
+        while(i<n1 && j<n2){
+            if(arr1[i]<=arr2[j]){
+                if(union.size()==0 || union.get(union.size()-1)!=arr1[i]){//if el at end of arraylist same as arr1[i] then it is duplicate dont insert it
+                    union.add(arr1[i]);
+                }
+                i++;
+            }
+            else{
+                if(union.size()==0 || union.get(union.size()-1)!=arr2[j]){//if el at end of arraylist same as arr2[j] then it is duplicate dont insert it
+                    union.add(arr2[j]);
+                }
+                j++;
+            }
+        }
+        while(i<n1){//insert(if any) remaining els of arr1
+            if(union.size()==0 || arr1[i]!=union.get(union.size()-1)){
+                union.add(arr1[i]);
+            }
+            i++;
+        }
+        while(j<n2){//insert(if any) remaining els of arr2
+            if(union.size()==0 || arr2[j]!=union.get(union.size()-1)){
+                union.add(arr2[j]);
+            }
+            j++;
+        }
+        return union;
+    }
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5};
         int n=arr.length;
@@ -118,6 +159,13 @@ public class Prog00_Array_Imp_programs {
         arr = new int[]{4,5,7,2,9};
         System.out.println(linearSearch(arr,2));
 
-        
+        int[] arr1 = {1, 1, 2, 2, 3, 4, 5};
+        int[] arr2 = {2, 2, 3, 4, 4, 5, 6};
+        System.out.println(union_1(arr1, arr2));
+        System.out.println(union_2(arr1, arr2));
+
+        arr1 = new int[]{};// empty, so first while loop doesnt run as no comparison b/w arr1 and arr2 possible so in 2nd while loop union.get(union.size()-1) evaluates to union.get(0-1) i.e. union.get(-1) so we might get error so union.size()==0 || union.get(...) is necessary, so in 2nd while loop when union size is 0 it tries to insert but since arr1[i] is nothing so skips everytime then in 3rd loop again when union size 0 but inserts all els of arr2 
+        arr2 = new int[]{5, 7, 9};
+        System.out.println(union_2(arr1, arr2));
     }
 }
