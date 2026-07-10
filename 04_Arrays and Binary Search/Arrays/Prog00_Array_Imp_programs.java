@@ -133,6 +133,48 @@ public class Prog00_Array_Imp_programs {
         }
         return union;
     }
+    // Intersection of Two Sorted Arrays
+    // Brute, TC=O(N1 * N2), SC=O(N2)
+    static ArrayList<Integer> intersection_1(int[] arr1, int[] arr2){//You may use array also 
+        int n1=arr1.length;
+        int n2=arr2.length;
+        ArrayList<Integer> ans = new ArrayList<>();
+        boolean[] visited = new boolean[n2];//or if you keep visited array for n1, the i loop runs till n2 and j loop runs till n1
+        for(int i=0;i<n1;i++){
+            for(int j=0;j<n2;j++){
+                if(arr1[i]==arr2[j] && !visited[j]){
+                    ans.add(arr1[i]);
+                    visited[j]=true;
+                    break;
+                }
+                if(arr2[j]>arr1[i]){//we have exceeded, so you will never find equal el, so stop j loop
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+    // Optimal, TC=O(N1+N2), SC=O(1)
+    static ArrayList<Integer> intersection_2(int[] arr1, int[] arr2){//You may use array also 
+        int n1=arr1.length;
+        int n2=arr2.length;
+        ArrayList<Integer> ans = new ArrayList<>();
+        int i=0,j=0;
+        while(i<n1 && j<n2){
+            if(arr1[i]<arr2[j]){
+                i++;
+            }
+            else if(arr1[i]==arr2[j]){
+                ans.add(arr1[i]);
+                i++;
+                j++;
+            }
+            else{
+                j++;
+            }
+        }
+        return ans;
+    }
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5};
         int n=arr.length;
@@ -167,5 +209,10 @@ public class Prog00_Array_Imp_programs {
         arr1 = new int[]{};// empty, so first while loop doesnt run as no comparison b/w arr1 and arr2 possible so in 2nd while loop union.get(union.size()-1) evaluates to union.get(0-1) i.e. union.get(-1) so we might get error so union.size()==0 || union.get(...) is necessary, so in 2nd while loop when union size is 0 it tries to insert but since arr1[i] is nothing so skips everytime then in 3rd loop again when union size 0 but inserts all els of arr2 
         arr2 = new int[]{5, 7, 9};
         System.out.println(union_2(arr1, arr2));
+
+        arr1 = new int[]{1, 1, 2, 2, 3, 4, 5};
+        arr2 = new int[]{2, 2, 3, 4, 4, 5, 6};
+        System.out.println(intersection_1(arr1, arr2));
+        System.out.println(intersection_2(arr1, arr2));
     }
 }
