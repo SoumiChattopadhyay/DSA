@@ -1,5 +1,5 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-
 public class Prog00_Array_Imp_programs {
     // Left Rotate array by 1 place
     // TC=O(N), SC=O(1)
@@ -45,6 +45,27 @@ public class Prog00_Array_Imp_programs {
             end--;
         }
     }
+    // Move zeroes to end
+    // Brute, TC=O(N)
+    static void move0sToEnd_1(int[] arr, int n){
+        ArrayList<Integer> temp = new ArrayList<>();
+        for(int i=0;i<n;i++){//copy non-zero els to another list. We took list becoz we dont know the exact size
+            if(arr[i]!=0){
+                temp.add(arr[i]);
+            }
+        }
+        int k=temp.size();
+        for(int i=0;i<k;i++){//put the copied els in the front of the array
+            arr[i]=temp.get(i);
+        }
+        for(int i=k;i<n;i++){//fill remaining positions with 0
+            arr[i]=0;
+        }
+    }
+    // Optimal
+    static void move0sToEnd_2(int[] arr, int n){
+
+    }
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5};
         int n=arr.length;
@@ -57,5 +78,15 @@ public class Prog00_Array_Imp_programs {
         arr = new int[]{1,2,3,4,5,6,7};
         n=arr.length;
         System.out.println(Arrays.toString(leftRotatebyD_2(arr,n,2)));
+
+        arr = new int[]{1,0,2,3,2,0,0,4,5,1};
+        n=arr.length;
+        move0sToEnd_1(arr,n);
+        System.out.println(Arrays.toString(arr));
+
+        arr = new int[]{1,0,2,3,2,0,0,4,5,1};
+        n=arr.length;
+        move0sToEnd_2(arr,n);
+        System.out.println(Arrays.toString(arr));
     }
 }
