@@ -21,7 +21,7 @@ public class Prog23_Merge_Overlapping_Intervals {
             }
             // Start iterating over intervals after current interval
             for(int j=i+1;j<n;j++){
-                if(arr[j][0]<=end){//overlapping interval found
+                if(arr[j][0]<=end){//overlapping interval found (if start of 2nd interval is less than equal to end of first interval)
                     end=Math.max(end,arr[j][1]);
                     //note: no need to check math.min for start because arr is already sorted by starting time
                 }
@@ -44,7 +44,7 @@ public class Prog23_Merge_Overlapping_Intervals {
         List<int[]> ans = new ArrayList<>();
         
         for(int i=0;i<n;i++){
-            // If current interval is not overlapping with the previous merged interval
+            // If current interval is not overlapping with the previous merged interval, then start a new interval for merging
             if(ans.isEmpty() || arr[i][0]>ans.get(ans.size()-1)[1]){
                 ans.add(new int[]{arr[i][0],arr[i][1]});
             }
