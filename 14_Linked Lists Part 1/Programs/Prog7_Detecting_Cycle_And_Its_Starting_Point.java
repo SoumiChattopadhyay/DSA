@@ -1,4 +1,4 @@
-public class Prog7_DetectingCycle {
+public class Prog7_Detecting_Cycle_And_Its_Starting_Point {
     public static class Node{
         int data;
         Node next;
@@ -22,6 +22,10 @@ public class Prog7_DetectingCycle {
     }
     // Find the starting point of the cycle
     // Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
+    // detect cycle by 1st meeting of slow-fast
+    // keep fast at the meeting point
+    // move slow to the head
+    // where slow and fast meet for the 2nd time is the start of the cycle
     public Node find_Start_of_Cycle(){
         Node fast=head,slow=head;
         // Detect cycle
@@ -46,8 +50,6 @@ public class Prog7_DetectingCycle {
         }
         return slow;
     }
-    // Find length of cycle
-    // Brute
     
     public void printList(){
         Node ptr=head;
@@ -60,7 +62,7 @@ public class Prog7_DetectingCycle {
     public static Node head;
     public static Node tail;
     public static void main(String[] args) {
-        Prog7_DetectingCycle ll = new Prog7_DetectingCycle();
+        Prog7_Detecting_Cycle_And_Its_Starting_Point ll = new Prog7_Detecting_Cycle_And_Its_Starting_Point();
         head=new Node(1);
         head.next=new Node(2); 
         head.next.next=new Node(3);
