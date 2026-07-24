@@ -7,6 +7,7 @@ public class Prog7_DetectingCycle {
             this.next=null;
         }
     }
+    // Detect if cycle exists or not
     public boolean isCyclic(){
         Node slow=head;
         Node fast=head;
@@ -19,6 +20,21 @@ public class Prog7_DetectingCycle {
         }
         return false;
     }
+    // Find the starting point of the cycle
+    // Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
+    public Node find_Start_of_Cycle(){
+        Node fast=head,slow=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                return slow;
+            }
+        }
+        return null;      
+    }
+    // Find length of cycle
+    
     public void printList(){
         Node ptr=head;
         while(ptr!=null){

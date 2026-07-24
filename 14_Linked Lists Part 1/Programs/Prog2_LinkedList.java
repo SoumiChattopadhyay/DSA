@@ -27,8 +27,9 @@ public class Prog2_LinkedList{
         size--;
         return val;
     }
-    public Node deleteMiddle(Node head) {
-        if(head.next==null){
+    // https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
+    public Node removeMiddle(Node head) {
+        if(head.next==null){//if linked list has only single el.
             head=null;
             return null;
         }
@@ -50,6 +51,25 @@ public class Prog2_LinkedList{
             ptr=ptr.next;
         }
         return len;
+    }
+    // Approach 2(Better)
+    public Node removeMiddle2(Node head) {
+        if(head==null || head.next==null){//if linked list has no el or single el.
+            head=null;
+            return null;
+        }
+        
+        Node slow=head, fast=head, prev=head;
+
+        while(fast!=null && fast.next!=null){
+            prev=slow;
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        // Now slow points to middle el and prev points to prev el of middle el
+        prev.next = slow.next;
+        slow.next=null;
+        return head;
     }
     public int removeLast(){//TC=O(n)
         if(size==0){
