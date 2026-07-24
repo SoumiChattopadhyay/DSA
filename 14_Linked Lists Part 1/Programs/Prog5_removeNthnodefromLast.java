@@ -13,7 +13,7 @@ public class Prog5_removeNthnodefromLast {
     public void removeNthNodefromLast(int n){
         int size=findSize();
         //Corner Case
-        if(n==size){
+        if(n==size){//means node at idx 0
             head=head.next;
             return;
         }

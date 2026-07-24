@@ -2,6 +2,7 @@ public class Prog1_LinkedList{
     public static class Node{
         int data;//property of class Node(member variables)
         Node next;//property of class Node
+        
         public Node(int data){//constructor for creating objects of class Node with above properties
             this.data=data;
             this.next=null;
@@ -35,19 +36,23 @@ public class Prog1_LinkedList{
             head=tail=newNode;
             return;
         }
-            Node ptr=head,ptr2=head;
-            int len=0;
-            while(ptr!=null){//finding the length of the linked list, TC = O(n) as it involves reaching out to each node
-                len++;
-                ptr=ptr.next;
-            }
-            int middleIndex = (len/2)-1;//finding the middle index of the linked list. 
-            // Insert the node at the middle index
-            for(int j=0;j<middleIndex;j++){//pointer 2 is going to the node at index just before the middle index. this loop is not executed if middleindex=0 i.e. if ll has 1 node
-                ptr2=ptr2.next;
-            }
-           newNode.next=ptr2.next;
-           ptr2.next=newNode;
+        Node ptr=head,ptr2=head;
+        int len=0;
+        while(ptr!=null){//finding the length of the linked list, TC = O(n) as it involves reaching out to each node
+            len++;
+            ptr=ptr.next;
+        }
+        int middleIndex = (len/2)-1;// the index before the middle index of the linked list. 
+        // Insert the node at the middle index
+        for(int j=0;j<middleIndex;j++){//pointer 2 is going to the node at index just before the middle index. 
+            ptr2=ptr2.next;
+        }
+        newNode.next=ptr2.next;
+        ptr2.next=newNode;
+
+        if(newNode.next == null){//update tail if the new node becomes the last node
+            tail = newNode;
+        }
     }
     public void addLast(int data){
         Node newNode = new Node(data);
@@ -73,7 +78,7 @@ public class Prog1_LinkedList{
         size++;
         Node ptr=head;
         int i=0;
-        while(i<idx-1){//going to the index before idx
+        while(i<idx-1){//going to idx-1 (the index before idx)
             ptr=ptr.next;
             i++;
         }
@@ -82,7 +87,7 @@ public class Prog1_LinkedList{
         ptr.next=newNode;
         // In the newly formed linked-list, you will never see the new node as the last node because then u cant use this function u have to use addLast() function. So there is no need of writing statement for tail pointer pointing to new node.
     }
-    // Insert using recursion
+    // Insert using recursion Method-1
     public void insertSpecific(int val,int idx,int i,Node ptr){
         if(i==idx-1){
             Node newNode = new Node(val);
@@ -147,6 +152,8 @@ public class Prog1_LinkedList{
         ll.printList();
         ll.addSpecific(7,355);//following 0-based indexing
         ll.insertRec(555, 0);
+        ll.printList();
+        ll.insertRec(655, 4);
         ll.printList();
     }
 }

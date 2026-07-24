@@ -13,9 +13,9 @@ public class Prog3_LinkedList{
     //Incrementing the size every time a node is created is a constant operation so the overall time complexity for finding the size of the linked list is O(1)
     //Methods
     public int recursiveSearch(int key,Node ptr, int idx){
-        // if(ptr==null){//reached end of ll
-        //     return -1;
-        // }
+        if(ptr==null){//reached end of ll
+            return -1;
+        }
         if(key==ptr.data){
             return idx;
         }

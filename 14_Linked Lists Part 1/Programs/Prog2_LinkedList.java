@@ -46,6 +46,17 @@ public class Prog2_LinkedList{
         size--;
         return val;
     }
+    // https://leetcode.com/problems/delete-node-in-a-linked-list/description/
+    // Delete the given node. Note that by deleting the node, we do not mean removing it from memory. We mean:
+    // The value of the given node should not exist in the linked list.
+    // The number of nodes in the linked list should decrease by one.
+    // All the values before node should be in the same order.
+    // All the values after node should be in the same order.
+    public void removeNode(Node node){
+        node.data = node.next.data;
+        node.next = node.next.next;
+    }
+
     public void addFirst(int data){//TC = O(1)
         //create new node
         Node newNode = new Node(data);
@@ -87,8 +98,12 @@ public class Prog2_LinkedList{
         System.out.println(tail);//correct
         System.out.println(tail.next);//correct
         delVal = ll.removeFirst();
-        System.out.print("Deleted value = "+delVal+",");
+        System.out.println("Deleted value = "+delVal+",");
         ll.printList();
         System.out.println("Size of ll = "+ll.size);
+        
+        Node ptr=head.next;
+        ll.removeNode(ptr);
+        ll.printList();
     }
 }
