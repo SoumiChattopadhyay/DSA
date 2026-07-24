@@ -1,4 +1,4 @@
-public class Prog14_length_of_cycle {
+public class Prog8_2_Length_of_cycle {
     public static class Node{
         int val;
         Node next;
@@ -15,7 +15,7 @@ public class Prog14_length_of_cycle {
         head.next.next.next=new Node(40);
         head.next.next.next.next=head.next;
         tail=head.next;
-        Prog14_length_of_cycle obj = new Prog14_length_of_cycle();
+        Prog8_2_Length_of_cycle obj = new Prog8_2_Length_of_cycle();
         System.out.println("Length of cycle is: " + obj.find_Length_of_Cycle());
     }
     public int find_Length_of_Cycle(){

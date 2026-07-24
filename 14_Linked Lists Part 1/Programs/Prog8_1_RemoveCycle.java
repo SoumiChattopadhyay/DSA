@@ -1,4 +1,4 @@
-public class Prog8_RemoveCycle {
+public class Prog8_1_RemoveCycle {
     public static class Node{
         int data;
         Node next;
@@ -11,7 +11,7 @@ public class Prog8_RemoveCycle {
     public static Node tail;
 
     public void removeCyclic(){//Floyd's Cycle Finding Algorithm
-    boolean cycle=false;
+        boolean cycle=false;
         //step-1 : detect cyclic
         Node slow=head;
         Node fast=head;
@@ -66,7 +66,7 @@ public class Prog8_RemoveCycle {
         System.out.print("null");
     }
     public static void main(String[] args) {
-        Prog8_RemoveCycle ll = new Prog8_RemoveCycle();
+        Prog8_1_RemoveCycle ll = new Prog8_1_RemoveCycle();
         head=new Node(1);
         head.next=new Node(2); 
         head.next.next=new Node(3);
