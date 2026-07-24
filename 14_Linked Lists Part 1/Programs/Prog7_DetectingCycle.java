@@ -34,6 +34,7 @@ public class Prog7_DetectingCycle {
         return null;      
     }
     // Find length of cycle
+    // Brute
     
     public void printList(){
         Node ptr=head;

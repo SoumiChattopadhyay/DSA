@@ -10,10 +10,37 @@ public class Prog5_removeNthnodefromLast {
     public static Node head;
     public static Node tail;
 
+    // Using for loop
+    public Node removeNthFromEnd(Node head, int n) {
+        int len = findLen(head);
+        if(n==len){
+            head=head.next;
+            return head;
+        }
+        int delPos = len-n;
+        Node ptr = head;
+        for(int i=0;i<delPos-1;i++){
+            ptr=ptr.next;
+        }
+        if(ptr.next!=null){
+            ptr.next=ptr.next.next;
+        }
+        return head;
+    }
+    public int findLen(Node head){
+        int len=0;
+        while(head!=null){
+            len++;
+            head=head.next;
+        }
+        return len;
+    }
+
+    // Using while loop
     public void removeNthNodefromLast(int n){
         int size=findSize();
         //Corner Case
-        if(n==size){//means node at idx 0
+        if(n==size){//means delete node at idx 0
             head=head.next;
             return;
         }
@@ -24,7 +51,9 @@ public class Prog5_removeNthnodefromLast {
             i++;
             ptr=ptr.next;
         }
-        ptr.next=ptr.next.next;
+
+        if(ptr.next!=null)//if nth el to be removed from last is null
+            ptr.next=ptr.next.next;
     }
     public int findSize(){
         Node ptr=head;

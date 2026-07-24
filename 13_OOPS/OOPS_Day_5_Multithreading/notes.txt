@@ -1,0 +1,24 @@
+If we didnt use Thread class then output would have come like this - 
+40 times Thread 1 Cooking food, I am happy printed first
+Then 40 times Thread 2 Chatting with her,I am sad
+But since we are extending Thread class so both threads are running concurrently(at a time any one thread, but both are running together. Not like one first finishes then other runs like in normal functions)
+
+Concurrently means both things happening together but at a time only one thing is being done
+Ex: Cooking and Chatting, Cooking done at a time then again chatting done then again cooking done again chatting done
+
+Parallely means both things happening simultaneously
+Ex: Cooking and chatting at the same time
+
+Multithreading allows concurrency, it allows CPU to run threads concurrently.
+
+Thread
+A thread is the smallest unit of execution within a process.
+It has its own program counter, register set, and stack, but shares the process’s code, data, and resources with other threads of the same process.
+In simple terms, a thread is a lightweight process that performs a specific task within a program.
+
+Multithreading
+Multithreading is the ability of a CPU or an operating system to execute multiple threads concurrently within a single process.
+It improves performance by:
+    Allowing tasks to run concurrently
+    Reducing context-switch overhead compared to using multiple processes
+    Keeping the program responsive (e.g., one thread handles UI while another performs computation)

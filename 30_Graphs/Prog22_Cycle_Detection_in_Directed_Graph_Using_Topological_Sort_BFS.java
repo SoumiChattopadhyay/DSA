@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Prog21_Topological_Sorting_Using_BFS {//Kahn's Algorithm
-    public static int[] topoSort(int V,int[][] edges){
+public class Prog22_Cycle_Detection_in_Directed_Graph_Using_Topological_Sort_BFS {
+    public static boolean checkCycle(int V,int[][] edges){
         //find adjacency list
         ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
         for(int i=0;i<V;i++)adjList.add(new ArrayList<>());
@@ -28,37 +27,30 @@ public class Prog21_Topological_Sorting_Using_BFS {//Kahn's Algorithm
                 q.add(i);
             }
         }
-        int topo[]=new int[V];
-        int i=0;
+        int count=0;
         // Why would there be minimum one node with indegree 0?
         // Since the graph is a DAG (acyclic), it must have at least one node with 
         // indegree 0 (a "starting point" node). If every node had indegree ≥ 1 which is not possible, then we could keep following incoming edges indefinitely → this would eventually form a cycle.
-        
-        // Why nodes with indegree 0 are inserted first?
-        // Becoz in Topo sort Linear ordering goes like node then its neighbour.
-        // neighbour is the one having the incoming edge of the node. 
-        // So it is ensured that node is inserted first then its neighbour
         while(!q.isEmpty()){
             int node = q.remove();
-            topo[i++]=node;
+            count++;
             for(int neighbor:adjList.get(node)){
-                indegree[neighbor]--;//node is taken out of the queue and is part of topoSort array, so remove edge between node and neighbor
+                indegree[neighbor]--;
                 if(indegree[neighbor]==0){
                     q.add(neighbor);
                 }
             }
         }
-        return topo;
+        if(count==V){
+            return false;//no cycle
+        }
+        return true;//cycle
     }
     public static void main(String[] args) {
-        // ArrayList<ArrayList<Integer>> adjList=new ArrayList<>(Arrays.asList(
-        //     new ArrayList<>(),
-        //     new ArrayList<>(),
-        //     new ArrayList<>(Arrays.asList(3)),
-        //     new ArrayList<>(Arrays.asList(1)),
-        //     new ArrayList<>(Arrays.asList(0,1)),
-        //     new ArrayList<>(Arrays.asList(0,2))));
         int edges[][]=new int[][]{{2,3},{3,1},{4,0},{4,1},{5,0},{5,2}};
-        System.out.println(Arrays.toString(topoSort(6, edges)));
+        System.out.println(checkCycle(6, edges));
+    
+        edges=new int[][]{{0,1},{1,2},{2,3},{3,3}};
+        System.out.println(checkCycle(4, edges));
     }
 }

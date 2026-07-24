@@ -1,0 +1,13 @@
+Why the runtime of Floyd-Warshall showing 10ms on leetcode and that of Dijkstra showing 47ms even though the TC of Dijkstra is better than Floyd-Warshall?
+Even though Dijkstra’s algorithm is theoretically more efficient for sparse graphs, 
+in practice it runs slower here because of implementation overhead. Each time you run 
+Dijkstra, you use a priority queue (heap) and create Pair objects, which involves 
+method calls, memory allocation, and comparisons. The heap operations (push/pop) are 
+more expensive than simple array accesses. Also, the memory access pattern is less 
+cache-friendly than Floyd–Warshall’s tight triple loop over a contiguous int[][] array.
+For small graphs (n ≤ 100) that are relatively dense, the constant-time arithmetic in 
+Floyd–Warshall ends up being faster than the heavier Dijkstra operations, so Floyd–Warshall 
+finishes in ~10 ms, while your Dijkstra version takes ~47 ms.
+For large, sparse graphs, the overhead of priority queues and object creation in Dijkstra 
+becomes negligible compared to the massive number of iterations in Floyd–Warshall, 
+making Dijkstra faster.

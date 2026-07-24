@@ -24,3 +24,8 @@ Ex:       A
           D
 B and C inherit from A(Hierarchial Inheritance)
 D inherits from B and C(Multiple Inheritance)
+
+
+🧠 What is Upcasting in Java?
+Upcasting means assigning an object of a subclass to a reference variable of its superclass.
+In other words, you treat a child object as if it were a parent object.
