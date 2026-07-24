@@ -24,14 +24,27 @@ public class Prog7_DetectingCycle {
     // Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
     public Node find_Start_of_Cycle(){
         Node fast=head,slow=head;
+        // Detect cycle
         while(fast!=null && fast.next!=null){
             slow=slow.next;
             fast=fast.next.next;
             if(slow==fast){
-                return slow;
+                break;
             }
         }
-        return null;      
+        
+        // No cycle
+        if (fast == null || fast.next == null) {
+            return null;
+        }
+
+        // Find cycle start
+        slow = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
     }
     // Find length of cycle
     // Brute

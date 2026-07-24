@@ -29,21 +29,22 @@ public class Prog8_1_RemoveCycle {
         }
         System.out.println(fast.data);
         //find 2nd meeting point
-            slow=head;
-            Node prev=null;//last node
-            while(slow!=fast){
-                prev=fast;//we need the node just before the cycle's starting point
-                slow=slow.next;
+        slow=head;
+        Node prev=null;//last node
+        while(slow!=fast){
+            prev=fast;//we need the node just before the cycle's starting point
+            slow=slow.next;
+            fast=fast.next;
+        }//when slow=fast loop stops
+        if(prev!=null){//if the loop never runs then prev stays null which happens if the cycle starts right at the head of the list.
+            prev.next=null;
+        }//And that's how we remove the cycle if it starts at any other node but not at the head
+        else{//traverse to the last node. for last node next is slow not null coz its a cycle
+            while (fast.next!=slow) {  
                 fast=fast.next;
-            }//when slow=fast loop stops
-            if(prev!=null){//if the loop never runs then prev stays null which happens if the cycle starts right at the head of the list.
-                prev.next=null;
-            }else{//traverse to the last node. for last node next is slow not null coz its a cycle
-                while (fast.next!=slow) {  
-                    fast=fast.next;
-                }
-                fast.next=null;
             }
+            fast.next=null;
+        }//And that's how we remove the cycle if it starts at the head
     }
     public boolean isCyclic(){
         Node slow=head;
