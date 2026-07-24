@@ -55,6 +55,14 @@ public class Prog2_LinkedList{
     public void removeNode(Node node){
         node.data = node.next.data;
         node.next = node.next.next;
+        // Turn 4-->5-->1-->9-->null into 4-->1-->9-->null without actually deleting any node from memory
+        // So after step 1 : 
+        // 4-->1-->1-->9
+        // After step 2:
+        // 4-->1-->9-->null 
+        //         |
+        //         1
+        // So the linked list is 4-->1-->9-->null
     }
 
     public void addFirst(int data){//TC = O(1)
