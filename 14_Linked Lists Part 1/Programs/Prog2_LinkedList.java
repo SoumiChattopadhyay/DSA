@@ -27,6 +27,30 @@ public class Prog2_LinkedList{
         size--;
         return val;
     }
+    public Node deleteMiddle(Node head) {
+        if(head.next==null){
+            head=null;
+            return null;
+        }
+        Node ptr = head;
+        int len = findLen(ptr);
+        int midIdx = (len/2);
+        for(int i=0;i<midIdx-1;i++){//move ptr to midIdx-1
+            ptr=ptr.next;
+        }
+        Node delNode = ptr.next;
+        ptr.next = ptr.next.next;
+        delNode.next=null;
+        return head;
+    }
+    public int findLen(Node ptr){
+        int len=0;
+        while(ptr!=null){
+            len++;
+            ptr=ptr.next;
+        }
+        return len;
+    }
     public int removeLast(){//TC=O(n)
         if(size==0){
             System.out.println("Data underflow. LL is empty.");
