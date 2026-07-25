@@ -25,6 +25,7 @@ public class Prog15_Happy_Number{
             slow=find_Square_of_Digits(slow);//+1
             fast=find_Square_of_Digits(find_Square_of_Digits(fast));//+2
         }while(slow!=fast);
+        
         if(slow==1){
             return true;
         }
