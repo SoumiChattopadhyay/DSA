@@ -71,7 +71,6 @@ public class Prog24_Add_1_to_a_number_represented_by_LL {
     }
     
     /*
-
     Iterative Approach
     Algorithm:
         Since the least significant digit is at the end of the list, we can’t process it directly using a single traversal. Therefore, to perform addition from the end, we need to reverse the list.
