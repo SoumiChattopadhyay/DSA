@@ -1,5 +1,3 @@
-import java.sql.Time;
-
 class Node{
     int val;
     Node next;
