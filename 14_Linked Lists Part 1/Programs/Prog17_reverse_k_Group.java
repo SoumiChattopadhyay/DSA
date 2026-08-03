@@ -9,15 +9,6 @@ public class Prog17_reverse_k_Group{
     }
     public static ListNode head;
     public static ListNode tail;
-    public static void main(String[] args) {
-        head=new ListNode(1);
-        head.next=new ListNode(2); 
-        head.next.next=new ListNode(3);
-        head.next.next.next=new ListNode(4);
-        head.next.next.next.next=new ListNode(5);
-        head=reverse_k_Group(head,2);
-        printList();
-    }
     // TC=O(n)(only reversing), SC=O(1) (no extra space taken)
     public static ListNode reverse_k_Group(ListNode head,int k){//reverse only the nodes from idx left and to idx right
         if(k<=1 || head==null){//do nothing
@@ -69,5 +60,14 @@ public class Prog17_reverse_k_Group{
             ptr=ptr.next;
         }
         System.out.print("null");
+    }
+    public static void main(String[] args) {
+        head=new ListNode(1);
+        head.next=new ListNode(2); 
+        head.next.next=new ListNode(3);
+        head.next.next.next=new ListNode(4);
+        head.next.next.next.next=new ListNode(5);
+        head=reverse_k_Group(head,2);
+        printList();
     }
 }

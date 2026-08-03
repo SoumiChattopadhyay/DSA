@@ -9,9 +9,6 @@ Input: 9->9->9
 Output: 1->0->0->0
 Explanation: 999 + 1 = 1000
 */
-
-import java.sql.Time;
-
 class Node{
     int data;
     Node next;
@@ -115,6 +112,7 @@ public class Prog24_Add_1_to_a_number_represented_by_LL {
         }
         return prev;
     }
+    
     public void printList(Node head){
         int i=0;
         while(head!=null){

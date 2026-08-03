@@ -26,8 +26,8 @@ public class Prog8_stackWithTwoQueues {
             
         }
         public int peek(){//TC=O(1)
-            
-    }
+            return q1.peek();
+        }
     public static void main(String[] args) {
         Stack s = new Stack();
         s.push(1);

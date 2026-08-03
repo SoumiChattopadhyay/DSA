@@ -1,7 +1,7 @@
 public class Prog16_reverse_part_of_LL{
     // 1-->2-->3-->4-->5
     // 1-->4-->3-->2-->5
-     public static class ListNode{
+    public static class ListNode{
         int data;
         ListNode next;
         public ListNode(int data){
@@ -11,15 +11,16 @@ public class Prog16_reverse_part_of_LL{
     }
     public static ListNode head;
     public static ListNode tail;
-    public static void main(String[] args) {
-        head=new ListNode(1);
-        head.next=new ListNode(2); 
-        head.next.next=new ListNode(3);
-        head.next.next.next=new ListNode(4);
-        head.next.next.next.next=new ListNode(5);
-        head=reverseBetween(head,1,3);
-        printList();
-    }
+    /*
+    Algorithm:
+        // skip and reach the (left)th node (but using prev and curr so that we can store 2 values the last and the newNode, normal pointer movement wont let us store 2 values)
+        // reverse the part till right
+        // join
+        // 1-->2-->3-->4-->5
+        // 1<--2<--3<--4<--5
+        // 
+    
+    */
     public static ListNode reverseBetween(ListNode head,int left,int right){//reverse only the nodes from idx left and to idx right
         if(left==right){//do nothing
             return head;
@@ -55,12 +56,24 @@ public class Prog16_reverse_part_of_LL{
         
         return head;
     }
+
     public static void printList(){
         ListNode ptr=head;
         while(ptr!=null){
             System.out.print(ptr.data+"->");
             ptr=ptr.next;
         }
-        System.out.print("null");
+        System.out.println("null");
+    }
+    public static void main(String[] args) {
+        head=new ListNode(1);
+        head.next=new ListNode(2); 
+        head.next.next=new ListNode(3);
+        head.next.next.next=new ListNode(4);
+        head.next.next.next.next=new ListNode(5);
+        printList();
+        // head=reverseBetween(head,1,3);
+        head=reverseBetween(head,2,4);
+        printList();
     }
 }

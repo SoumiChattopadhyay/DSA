@@ -1,28 +1,27 @@
 /*
-Example 1
-Input: expression = "+ab
-Output: (a+b)
+Example 1:
+Input: expression = "+ab"
+Output: ab+
 
 Example 2:
-Input: expression = "*+ab-cd
-Output: ((a+b)*(c-d))
+Input: expression = "*+ab-cd"
+Output: ab+cd-*
 
-Algorithm:
+Algorithm
     Traverse the prefix expression from right to left.
     Use a stack to store operands.
-    For each operator, pop two operands from the stack, wrap them in parentheses, and push the
-    resulting expression back.
-    The final item in the stack will be the infix expression.
+    For each operator, pop two operands from the stack, combine them with the operator, and 
+    push the result back.
+    The final item in the stack will be the postfix expression.
 
-TC : O(n) where n is the length of the prefix expression (only one pass).
-
-SC : O(n) for the stack used to store operands.
+Time Complexity: O(n), single pass through the expression.
+Space Complexity: O(n), stack space for storing intermediate results.
 */
 
 import java.util.Stack;
 
-public class Prog01_Prefix_to_Infix_Conversion {
-    static String prefixToInfix(String prefixExp){
+public class Prog02_Prefix_to_Postfix_Conversion {
+    static String prefixToPostfix(String prefixExp){
         Stack<String> stack = new Stack<>();
         int n=prefixExp.length();
         for(int i=n-1;i>=0;i--){//Traverse from right to left
@@ -34,8 +33,8 @@ public class Prog01_Prefix_to_Infix_Conversion {
                 // Pop two operands from the stack
                 String op1 = stack.pop();
                 String op2 = stack.pop();
-                // Form the new infix expression and push back to stack
-                stack.push("(" + op1 + ch + op2 + ")");
+                // Form the new postfix expression and push back to stack
+                stack.push(op1 + op2 + ch);
             }
         }
         // The final element in the stack is the result
@@ -43,6 +42,6 @@ public class Prog01_Prefix_to_Infix_Conversion {
     }
     public static void main(String[] args) {
         String prefixExp = "*-A/BC-/AKL";
-        System.out.println(prefixToInfix(prefixExp));
+        System.out.println(prefixToPostfix(prefixExp));
     }
 }
