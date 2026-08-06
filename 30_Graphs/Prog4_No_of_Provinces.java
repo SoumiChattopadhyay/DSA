@@ -20,7 +20,7 @@ public class Prog4_No_of_Provinces {
         int[] visited = new int[N+1];
 
         int count=0;
-        for(int i=0;i<adj.size();i++){// Even if the DFS function is not called from this loop directly for all N nodes due to condition fail, but the loop is still running N times. So TC for this loop is O(N)
+        for(int i=0;i<adj.size();i++){//O(N) Even if the DFS function is not called from this loop directly for all N nodes due to condition fail, but the loop is still running N times. So TC for this loop is O(N)
             if(visited[i]==0){//O(1)
                 count++;
                 dfs(i,visited,adj);
