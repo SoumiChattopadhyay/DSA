@@ -1,3 +1,16 @@
+/*
+Algorithm:
+    Start by scanning the infix expression from left to right.
+    If the scanned character is an operand, print it immediately.
+    If the scanned character is an operator:
+        If the precedence of the operator is greater than the operator in the stack, or the stack is empty, or the stack contains a ‘(’, push the operator into the stack.
+        Otherwise, pop all operators from the stack with higher or equal precedence than the scanned operator, then push the scanned operator into the stack.
+    If the scanned character is a ‘(’, push it into the stack.
+    If the scanned character is a ‘)’, pop the stack and output the operators until a ‘(’ is encountered, and discard both parentheses.
+    Repeat steps 2-5 until the entire infix expression has been scanned.
+    Print the output.
+    Finally, pop and print all remaining operators in the stack until it is empty.
+*/
 import java.util.Stack;
 
 class Solution{
@@ -17,9 +30,9 @@ class Solution{
     // Function to convert infix expression to postfix expression
 
     // Example
-    // Input: a + b * (c^d - e) ^ (f + g * h) - i  
+    // Input: a+b*(c^d-e)^(f+g*h)-i  
     // Output: abcd^e-fgh*+^*+i- 
-    // Input:(p + q) * (m - n)  
+    // Input:(p+q)*(m-n)  
     // Output: pq+mn-*
     
     // TC = O(N) + O(N) //Outer for loop runs for N times as it scans all N characters in the 
@@ -56,7 +69,7 @@ class Solution{
                 }
                 stack.pop();// Pop the ‘(‘ from the stack, but don't append it to result string
             }
-            // If the scanned character is an operator - ^,/,*,+,- then if it has higher precedence than character at the top of stack then push it to stack otherwise if it has lower precedence the character at the top of the stack then keep popping characters from stack until a lower precedence character is reached
+            // If the scanned character is an operator :- ^,/,*,+,- then if it has higher precedence than character at the top of stack:- (,^,/,*,+,-  then push it to stack otherwise if it has lower precedence than the character at the top of the stack then keep popping characters from stack until a lower precedence character is reached and then push it to the stack
             else{
                 while(!stack.isEmpty() && precedence(stack.peek())>=precedence(ch)){
                     postfixExp.append(stack.pop());
@@ -74,7 +87,7 @@ class Solution{
 }
 public class Prog00_Infix_to_Postfix_Conversion {
     public static void main(String[] args) {
-        String infixExp = "(p+q)*(m-n)";  // Infix expression
+        String infixExp = "a+b*(c^d-e)^(f+g*h)-i";  // Infix expression
         System.out.println("Infix expression: " + infixExp);
         String postfixEq = Solution.infixToPostfix(infixExp); // Convert the infix expression to postfix
         System.out.println("Postfix equivalent: " + postfixEq);

@@ -17,25 +17,43 @@ public class Prog5_No_of_Islands {
         for(int row=0;row<m;row++){
             for(int col=0;col<n;col++){
                 if(!visited[row][col] && grid[row][col] == '1'){
-                    bfs(row,col,grid,visited);
+                    // bfs(row,col,grid,visited);
+                    dfs(row,col,grid,visited);
                     count++;
                 }
             }
         }
         return count;
     }
-    //dfs traversal
-    public void dfs(){
+    //try dfs traversal
+    public void dfs(int row, int col, char[][] grid, boolean[][] visited){
+        
+        visited[row][col]=true;
+        
+        int m=grid.length;
+        int n=grid[0].length;
 
+        for(int delRow=-1;delRow<=1;delRow++){
+            for(int delCol=-1;delCol<=1;delCol++){
+                int neighRow = row+delRow;
+                int neighCol = col+delCol;
+                if(neighRow>=0 && neighRow<m && neighCol>=0 && neighCol<n && !visited[neighRow][neighCol] && grid[neighRow][neighCol]=='1'){
+                    dfs(neighRow, neighCol, grid, visited);
+                }
+            }
+        }
     }
 
     //bfs traversal
-    public void bfs(int ro,int co,char[][]grid,boolean[][]visited){
-        visited[ro][co]=true;
+    public void bfs(int ro, int co, char[][] grid, boolean[][] visited){
+        
         Queue<Pair> q = new LinkedList<>();
         q.add(new Pair(ro,co));
+        visited[ro][co]=true;
+        
         int m=grid.length;
         int n=grid[0].length;
+
         while(!q.isEmpty()){
             int row = q.peek().first;
             int col = q.peek().second;
