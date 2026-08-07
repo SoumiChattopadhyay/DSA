@@ -16,7 +16,8 @@ public class Prog7_Flood_Fill {
         int m=image.length;
         int n=image[0].length;
         boolean[][] visited = new boolean[m+1][n+1];
-        bfs(visited,image,sr,sc,color);
+        // bfs(visited,image,sr,sc,color);
+        dfs(visited,image,sr,sc,color,image[sr][sc]);
         return image;
     }
     private void bfs(boolean[][] visited,int[][] image, int sr, int sc, int color){
@@ -32,7 +33,7 @@ public class Prog7_Flood_Fill {
             Pair p=q.remove();
             int row = p.first;
             int col = p.second;
-            //go in 4 directions
+            //go in 4 directions 
             int[] drow = {-1,0,1,0};
             int[] dcol = {0,-1,0,1};
             for(int i=0;i<4;i++){
@@ -44,6 +45,28 @@ public class Prog7_Flood_Fill {
                     visited[nrow][ncol]=true;
                     image[nrow][ncol]=color;
                 }
+            }
+        }
+    }
+    private void dfs(boolean[][] visited, int[][] image, int sr, int sc, int color, int originalColor){
+        visited[sr][sc]=true;
+
+        image[sr][sc]=color;
+
+        int m=image.length;
+        int n=image[0].length;
+        
+        int[] delRow={-1,0,1,0};
+        int[] delCol={0,-1,0,1};
+
+        for(int i=0;i<4;i++){
+            int neighRow = sr + delRow[i];
+            int neighCol = sc + delCol[i];
+            if(neighRow>=0 && neighRow<m && neighCol>=0 && neighCol<n
+             && !visited[neighRow][neighCol] && image[neighRow][neighCol]==originalColor){
+                image[neighRow][neighCol] = color;
+                visited[neighRow][neighCol] = true;
+                dfs(visited, image, neighRow, neighCol, color, originalColor);
             }
         }
     }

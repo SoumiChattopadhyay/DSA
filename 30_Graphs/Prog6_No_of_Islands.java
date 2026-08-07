@@ -36,8 +36,8 @@ class Solution {
             int row = q.peek().first;
             int col = q.peek().second;
             q.remove();
-            //we have to check for land in 4 directions
-             int[] delrow = {-1, 0, 1, 0};
+            //we have to check for land in 4 directions, // we skipped (-1,-1), (-1,1), (1,1), (1,-1), then we could have ran a loop till 8
+             int[] delrow = {-1, 0, 1, 0};  
              int[] delcol = {0, -1, 0, 1};
              for(int i=0;i<4;i++){
                     int nrow = row+delrow[i];
