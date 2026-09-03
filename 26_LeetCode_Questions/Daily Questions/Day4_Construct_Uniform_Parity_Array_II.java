@@ -52,18 +52,66 @@ Explanation:
 
 Case 1: Make everything even
 An even number can simply stay as it is.
-An odd number must subtract another odd number, because:
-odd - odd = even.
+An odd number must subtract another odd number, because: odd - odd = even.
 The subtracted odd number must be smaller. (Because the problem has an important condition: nums1[i] - nums1[j] >= 1, So the result of subtraction must be positive.)
 So:
 If there are 0 odd numbers → possible.
-If there is 1 odd number → impossible, because there is no other smaller odd number to subtract.
-If there are 2+ odd numbers → possible: keep the smallest odd number and subtract it from every other odd number.
+If there is 1 or more odd numbers → impossible, because the smallest odd number cannot subtract any smaller odd number.
+    Example: In [2,7,11], 11 can be changed to 11-7=4 but 7 has to stay 7 as there is no smaller odd no.
 
+Case 2: Make everything odd
+An odd number can stay as it is.
+An even number must subtract an odd number: even - odd = odd.
+That odd number must be smaller than the even number. (Because the problem has an important condition: nums1[i] - nums1[j] >= 1, So the result of subtraction must be positive.)
+Therefore, if there are even numbers, we need: smallestOdd < everyEvenNumber
+So the simplest check is smallestOdd < smallestEven.
 
+Why did we consider even - odd and not odd - even in Case 2?
+yes, odd − even is absolutely a valid possibility.
+But we didn't do so because we don't need to modify an odd number at all.
+If we're targeting all odd:
+Every odd number → keep it
+Every even number → must change
+An even number can only become odd by subtracting an odd number.
+
+Time: O(n)
+Space: O(1)
 */
 public class Day4_Construct_Uniform_Parity_Array_II{
-    public static void main(String[] args) {
+    static boolean uniformArray(int[] nums1){
         
+        int oddCount=0;
+        int smallestOdd=Integer.MAX_VALUE;
+        int smallestEven=Integer.MAX_VALUE;
+
+        for(int x:nums1){
+            if(x%2==0){
+                smallestEven=Math.min(smallestEven,x);
+            }else{
+                oddCount++;
+                smallestOdd=Math.min(smallestOdd,x);
+            }
+        }
+        
+        if(oddCount==0){//All even no.s present
+            //Making everything even is possible
+            return true;
+        }
+
+        // If there are odd numbers, all-even is impossible.
+        // So try making everything odd.
+
+        // No even numbers -> already all odd
+        if (smallestEven==Integer.MAX_VALUE) {
+            return true;
+        }
+
+        // It is possible to make all-odd if the smallest odd no. is smaller than every other even no.
+        // Or we can say it is possible if simply the smallest odd no. is smaller than the smallest even no.
+        return smallestOdd<smallestEven;//no need for <= as the no.s are distinct 
+    }
+    public static void main(String[] args) {
+        int[] nums1 = {2,7,11};
+        System.out.println(uniformArray(nums1));
     }
 }
