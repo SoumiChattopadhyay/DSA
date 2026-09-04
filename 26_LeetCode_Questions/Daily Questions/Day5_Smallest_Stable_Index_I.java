@@ -80,19 +80,19 @@ public class Day5_Smallest_Stable_Index_I{
         int[] prefixMax = new int[n];
         int[] suffixMin = new int[n];
         
-        // Find the prefix max for each index
+        // Find the suffix min for each index 
+        suffixMin[n-1]=nums[n-1];
+        for(int i=n-2;i>=0;i--){
+            suffixMin[i]=Math.min(suffixMin[i+1],nums[i]);
+        }
+        
+        // Find the prefix max for each index until you find the smallest stable index
         prefixMax[0]=nums[0];
         for(int i=1;i<n;i++){
             prefixMax[i] = Math.max(prefixMax[i-1],nums[i]);
             if(prefixMax[i]-suffixMin[i]<=k){// Find the smallest stable index
                 return i;
             }
-        }
-
-        // Find the suffix min for each index until you find the smallest stable index
-        suffixMin[n-1]=nums[n-1];
-        for(int i=n-2;i>=0;i--){
-            suffixMin[i]=Math.min(suffixMin[i+1],nums[i]);
         }
         return -1;
     }
