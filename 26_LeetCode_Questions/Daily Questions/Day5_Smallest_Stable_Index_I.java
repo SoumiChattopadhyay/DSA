@@ -77,7 +77,6 @@ public class Day5_Smallest_Stable_Index_I{
     static int firstStableIndex2(int[] nums, int k) {
         int n=nums.length;
         
-        int[] prefixMax = new int[n];
         int[] suffixMin = new int[n];
         
         // Find the suffix min for each index 
@@ -85,12 +84,22 @@ public class Day5_Smallest_Stable_Index_I{
         for(int i=n-2;i>=0;i--){
             suffixMin[i]=Math.min(suffixMin[i+1],nums[i]);
         }
-        
+
+        // Cant do it the following way because if i=0 is the smallest stable index like in example nums=[0],k=0 - then 0 is never returned as the for loop never runs, so -1 is returned
         // Find the prefix max for each index until you find the smallest stable index
-        prefixMax[0]=nums[0];
-        for(int i=1;i<n;i++){
-            prefixMax[i] = Math.max(prefixMax[i-1],nums[i]);
-            if(prefixMax[i]-suffixMin[i]<=k){// Find the smallest stable index
+        // prefixMax[0]=nums[0];
+        // for(int i=1;i<n;i++){
+        //     prefixMax[i] = Math.max(prefixMax[i-1],nums[i]);
+        //     if(prefixMax[i]-suffixMin[i]<=k){// Find the smallest stable index
+        //         return i;
+        //     }
+        // }
+
+        int prefixMax=0;
+        // Find the prefix max for each index until you find the smallest stable index
+        for(int i=0;i<n;i++){
+            prefixMax = Math.max(prefixMax,nums[i]);
+            if(prefixMax-suffixMin[i]<=k){// Find the smallest stable index
                 return i;
             }
         }
