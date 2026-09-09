@@ -102,21 +102,16 @@ Explanation:
 */
 public class Day10_Count_Commas_in_Range_II{
     static long countCommas(long n) {
-        long start=1000,answer=0;
+        long start=1,end=1,answer=0;
+        int commas=0;
         while(start<=n){
-            start=1000*1000;
+            end=Math.min(n,start*1000-1);
+            answer+=(end-start+1)*commas++;
+            start*=1000;
         }
+        return answer;
     }
     public static void main(String[] args){
         System.out.println(countCommas((long)Math.pow(10,15)));
     }
 }
-/*
-Code Progression: 
-    long start=1000,answer=0;
-    while(start<=n){
-        start=1000*1000;
-    }
-
-
-*/
