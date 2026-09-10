@@ -132,6 +132,30 @@ For every node:
     6. Return:
        sum and count
 */
+/*
+Time Complexity: O(n)
+Where n = number of nodes in the binary tree.
+    Why?
+        We visit every node exactly once using DFS.
+        At each node, we only do constant-time operations:
+            sum = node.val + left[0] + right[0];
+            count = 1 + left[1] + right[1];
+        So: n nodes × O(1) work = O(n)
+    
+Space Complexity: O(h)
+Where h = height of the tree.
+
+This is because of the recursion call stack.
+
+Balanced tree: h = log n → O(log n)
+Skewed tree: h = n → O(n)
+
+Worst case:
+SC = O(n)
+
+The int[] returned at each recursive call doesn't change the asymptotic space complexity 
+because the recursion stack dominates.
+*/
 public class Day11_Count_Nodes_Equal_to_Average_of_Subtree{
     // Definition for a binary tree node.
     public class TreeNode {
