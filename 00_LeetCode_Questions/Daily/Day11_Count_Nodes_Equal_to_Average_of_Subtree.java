@@ -38,7 +38,99 @@ Create a recursive function that returns the size of a node’s subtree, and the
 
 /*
 Explanation
+1. What are we actually asked to find?
+    For every node, we need to check:
+    Is node.val equal to the average of all values in its subtree?
+    
+2. The important observation
+    Suppose we are currently at node 5.
+    To calculate the average of its subtree, we need:
+        sum of subtree
+        number of nodes in subtree
+    But how do we get those?
+        We can ask the left and right children to give us their information.
 
+    For example:
+
+       5
+      / \
+     6   2
+
+    For node 5:
+        Left subtree gives:
+            sum = 6
+            count = 1
+        Right subtree gives:
+            sum = 2
+            count = 1
+
+    Then node 5 combines them:
+        sum = 5 + 6 + 2 = 13
+        count = 1 + 1 + 1 = 3
+        
+        Average:  13 / 3 = 4
+
+    Since: 5 != 4
+    node 5 does not count.
+
+3. This naturally suggests recursion
+    At every node, we need information from its children.
+    So we can create a recursive function: solve(node)
+    which returns:
+        sum of subtree
+        count of nodes in subtree
+    What should happen at a null node?
+        If there is no node:
+            sum = 0
+            count = 0
+        So:
+        if (node == null)
+            return new int[]{0, 0};
+
+4. One very important detail
+    Don't calculate the average using double.
+    We don't need:
+        double average = (double) sum / count;
+    because the problem specifically wants the average rounded down.
+    Java integer division already does this:
+        int average = sum / count;
+
+5. How do we keep track of the answer?
+    Our recursive function needs to return:
+        sum
+        count
+    But we also need a global answer(no. of nodes whose value is equal to the average of their subtree).
+    So we can have a global variable:
+        int result = 0;
+    Whenever a node satisfies: node.val == sum / count
+    we do: result++;
+*/
+
+/*
+Remember this pattern:
+For every node:
+    1. Ask left child for:
+       - subtree sum
+       - subtree count
+
+    2. Ask right child for:
+       - subtree sum
+       - subtree count
+
+    3. Include current node:
+       sum = leftSum + rightSum + node.val
+       count = leftCount + rightCount + 1
+
+    4. Calculate:
+       average = sum / count
+
+    5. If:
+       node.val == average
+
+       increment answer
+
+    6. Return:
+       sum and count
 */
 public class Day11_Count_Nodes_Equal_to_Average_of_Subtree{
     // Definition for a binary tree node.
@@ -54,12 +146,17 @@ public class Day11_Count_Nodes_Equal_to_Average_of_Subtree{
             this.right = right;
         }
     }
-    int count=0;
+    int result=0;
     public int averageOfSubtree(TreeNode root) {
-        solve(root,count);
-        return count;
+        solve(root);
+        return result;
     }
-    public int[] solve(TreeNode root,int count){
+    public int[] solve(TreeNode root){
+        //Call left child for sum and count
+        int[] left = solve(root.left);
+        // Call right child for sum and count
+        int[] right = solve(root.right);
+        // Include current node
         
     }
     public static void main(String[] args) {
