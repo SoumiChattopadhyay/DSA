@@ -152,12 +152,20 @@ public class Day11_Count_Nodes_Equal_to_Average_of_Subtree{
         return result;
     }
     public int[] solve(TreeNode root){
+        if(root==null){
+            return new int[]{0,0};
+        }
         //Call left child for sum and count
         int[] left = solve(root.left);
         // Call right child for sum and count
         int[] right = solve(root.right);
-        // Include current node
-        
+        // Include current node in sum and count
+        int sum = left[0]+root.val+right[0];
+        int count = left[1]+1+right[1];
+        // Check if average is equal to current node value
+        if(sum/count==root.val){
+            result++;
+        }
     }
     public static void main(String[] args) {
         Day11_Count_Nodes_Equal_to_Average_of_Subtree obj = new Day11_Count_Nodes_Equal_to_Average_of_Subtree();
