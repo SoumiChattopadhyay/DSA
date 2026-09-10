@@ -152,6 +152,7 @@ public class Day11_Count_Nodes_Equal_to_Average_of_Subtree{
         return result;
     }
     public int[] solve(TreeNode root){
+        // Base Case
         if(root==null){
             return new int[]{0,0};
         }
@@ -166,6 +167,8 @@ public class Day11_Count_Nodes_Equal_to_Average_of_Subtree{
         if(sum/count==root.val){
             result++;
         }
+        // Return sum and count
+        return new int[]{sum,count};
     }
     public static void main(String[] args) {
         Day11_Count_Nodes_Equal_to_Average_of_Subtree obj = new Day11_Count_Nodes_Equal_to_Average_of_Subtree();
