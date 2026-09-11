@@ -132,7 +132,21 @@ public class Day12_Unique_3_Digit_Even_Nos{
         return count;        
     }
     static int totalNumbers2(int[] digits){
-        
+        // Count how many times each digit appears
+        int[] freq = new int[10];//0-9
+        for(int digit:digits){
+            freq[digit]++;
+        }
+        // Count no. of distinct digits, even digits and zeroes  {Distinct digits means different digits, without counting duplicates multiple times.}
+        int all=0, even=0, zero=0;
+        for(int i=0;i<10;i++){
+            if(freq[i]>0){
+                if(i%2==0) even++;
+                if(i==0) zero++;
+                all++;
+            }            
+        }
+        // 
     }
     public static void main(String[] args) {
         int[] digits = {1,2,2,3,4,4};
