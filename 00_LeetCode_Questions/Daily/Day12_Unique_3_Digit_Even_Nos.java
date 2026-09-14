@@ -83,6 +83,15 @@ Optimal Logic
     Count numbers with 3 different digits + numbers with 2 same digits + numbers with 3 same digits.
 
     The freq[] array makes sure we don't use a digit more times than we actually have.
+
+    
+    int count = even * all-2 * all-1;
+        Units digit - It must be even so even no. of choices.
+        
+        Hundreds digit - It cannot be 0. So, there are all - 1 choices.
+        
+        Tens digit - After choosing the units digit and hundreds digit, there are all - 2 remaining digits 
+        if all 3 digits must be different.
 */
 public class Day12_Unique_3_Digit_Even_Nos{
     // Brute
@@ -146,7 +155,25 @@ public class Day12_Unique_3_Digit_Even_Nos{
                 all++;
             }            
         }
-        // 
+        // No. of all possible 3 digit even no.s
+        int count = even*(all-1)*(all-2);
+
+        // Removing 3 digit even no.s starting with 0
+        for(int i=0; i<10; i++){
+            if (freq[i]>=2){
+                if (i==0) count+=all-1;
+                else if (i%2==1) count+=even;
+                else{
+                    count+=3*(even-1)-zero;
+                    count+=2*(all-even);
+                }           
+            }
+        }
+
+        for(int i=2; i<10; i+=2)if (freq[i]>=3)count++;
+            
+        
+        return count;
     }
     public static void main(String[] args) {
         int[] digits = {1,2,2,3,4,4};
